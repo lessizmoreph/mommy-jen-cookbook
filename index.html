@@ -114,7 +114,9 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 @media(max-width:460px){.recipe-grid{grid-template-columns:1fr}}
 .recipe-card{background:var(--card);border-radius:6px;overflow:hidden;box-shadow:0 2px 14px rgba(26,10,3,.07);transition:transform .25s,box-shadow .25s;cursor:pointer;display:flex;flex-direction:column}
 .recipe-card:hover{transform:translateY(-5px);box-shadow:0 10px 32px rgba(26,10,3,.14)}
-.card-stripe{height:5px}
+.card-img-wrap{height:210px;overflow:hidden;flex-shrink:0}
+.card-img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .4s ease;display:block}
+.recipe-card:hover .card-img{transform:scale(1.05)}
 .card-body{padding:20px;flex:1;display:flex;flex-direction:column}
 .card-cat{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
 .card-name{font-family:var(--ff-d);font-size:19px;font-weight:600;color:var(--dark);line-height:1.2;flex:1;margin-bottom:14px}
@@ -128,9 +130,12 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .modal-overlay.open{opacity:1;pointer-events:all}
 .modal-card{background:#fff;border-radius:8px;width:100%;max-width:920px;max-height:92vh;overflow-y:auto;position:relative;transform:scale(.95) translateY(12px);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
 .modal-overlay.open .modal-card{transform:none}
-.modal-close-btn{position:sticky;top:12px;float:right;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.1);color:#555;font-size:15px;display:flex;align-items:center;justify-content:center;margin:12px 12px -12px auto;transition:background .2s;z-index:10}
-.modal-close-btn:hover{background:rgba(0,0,0,.2)}
-.modal-header{padding:40px 40px 26px;background:linear-gradient(135deg,#1a0a03 0%,#3d1a0a 100%);color:var(--cream);clear:both}
+.modal-card{position:relative}
+.modal-close-btn{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.92);color:#333;font-size:16px;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:20;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.modal-close-btn:hover{background:#fff}
+.modal-img-wrap{width:100%;height:240px;overflow:hidden;flex-shrink:0}
+.modal-img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.modal-header{padding:32px 40px 22px;background:linear-gradient(135deg,#1a0a03 0%,#3d1a0a 100%);color:var(--cream)}
 @media(max-width:580px){.modal-header{padding:30px 22px 22px}}
 .modal-cat-badge{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:10px}
 .modal-title{font-family:var(--ff-d);font-size:clamp(26px,5vw,44px);font-weight:600;color:var(--cream);line-height:1.1;margin-bottom:20px}
@@ -249,6 +254,9 @@ footer{background:var(--bg);padding:64px 24px;text-align:center;border-top:1px s
 <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="modal-card" id="modalCard">
     <button class="modal-close-btn" id="modalClose" aria-label="Close recipe">&times;</button>
+    <div class="modal-img-wrap">
+      <img id="mImg" class="modal-img" src="" alt="" loading="eager">
+    </div>
     <div class="modal-header">
       <span class="modal-cat-badge" id="mCat"></span>
       <h2 class="modal-title" id="modalTitle"></h2>
@@ -295,7 +303,7 @@ const CAT_COLORS = {
 const RECIPES = [
   // ---- POULTRY & MEAT ----
   {
-    id:1, name:'Chicken / Pork Afritada', category:'Poultry & Meat',
+    id:1, img:'assets/page-02.jpg', name:'Chicken / Pork Afritada', category:'Poultry & Meat',
     prep:'30 mins', cook:'40 mins', serves:'6–8',
     ingredients:[
       '1 kg chicken or pork, cut into serving pieces',
@@ -323,7 +331,7 @@ const RECIPES = [
     tip:'For deeper flavor, marinate the chicken or pork in onion, garlic, soy sauce, and a little calamansi juice for 30 minutes before cooking. Brown the meat first in heated oil, then add the marinade and proceed to step 3.'
   },
   {
-    id:2, name:'Pork Menudo', category:'Poultry & Meat',
+    id:2, img:'assets/page-03.jpg', name:'Pork Menudo', category:'Poultry & Meat',
     prep:'30 mins', cook:'40 mins', serves:'6–8',
     ingredients:[
       '1 kg pork, cut into serving pieces',
@@ -356,7 +364,7 @@ const RECIPES = [
     tip:'For deeper flavor, marinate pork in onion, garlic, soy sauce, and a little calamansi juice for at least 30 minutes before cooking — or overnight in the refrigerator. Brown lightly then add herbs like 1 tsp dried basil and 1 tsp dried oregano before adding the marinade.'
   },
   {
-    id:3, name:'Cheesy Beef Caldereta', category:'Poultry & Meat',
+    id:3, img:'assets/page-04.jpg', name:'Cheesy Beef Caldereta', category:'Poultry & Meat',
     prep:'30 mins', cook:'40 mins', serves:'6–8',
     ingredients:[
       '1 kg beef sirloin, cubed into serving pieces',
@@ -389,7 +397,7 @@ const RECIPES = [
     tip:'For deeper flavor, marinate the beef in onion, garlic, soy sauce, and a little calamansi juice for 30 minutes before cooking. Brown the meat lightly then add the marinade and proceed to the next steps.'
   },
   {
-    id:4, name:'Picadillo', category:'Poultry & Meat',
+    id:4, img:'assets/page-05.jpg', name:'Picadillo', category:'Poultry & Meat',
     prep:'30 mins', cook:'40 mins', serves:'6–8',
     ingredients:[
       '1 kg ground beef or pork',
@@ -419,7 +427,7 @@ const RECIPES = [
     tip:'You can fry some bananas as a side for this lovely dish. To remove the gaminess of pork or beef, add 1 tsp of grated ginger after browning the meat and sauté for 3 minutes before adding the liquid.'
   },
   {
-    id:5, name:'Ox Tail & Cheek Kare-Kare', category:'Poultry & Meat',
+    id:5, img:'assets/page-06.jpg', name:'Ox Tail & Cheek Kare-Kare', category:'Poultry & Meat',
     prep:'30 mins', cook:'2 hrs', serves:'6–8',
     ingredients:[
       '1 kg beef cheeks and tail, cut into serving pieces',
@@ -450,7 +458,7 @@ const RECIPES = [
     tip:'For the bagoong: soak 1 cup fermented shrimp in ½ cup white vinegar with ¼ cup brown sugar for 30 mins. Sauté 1 small onion, 2 cloves garlic, and 1 tomato in oil until cooked, pour in the soaked shrimp and bring to a boil. Add 1 diced red chili. You can also add chicharrón (fried pork rind) or bagnet for crunch.'
   },
   {
-    id:6, name:'Bistek Tagalog', category:'Poultry & Meat',
+    id:6, img:'assets/template.jpg', name:'Bistek Tagalog', category:'Poultry & Meat',
     prep:'15 mins', cook:'20 mins', serves:'4–6',
     ingredients:[
       '500 g beef sirloin, thinly sliced',
@@ -474,7 +482,7 @@ const RECIPES = [
     tip:'For extra tender beef, marinate overnight in the refrigerator. Use calamansi juice (Filipino lime) for the most authentic flavor. Beef should be pounded thin or sliced against the grain for the best texture.'
   },
   {
-    id:7, name:'Beef Mechado', category:'Poultry & Meat',
+    id:7, img:'assets/template.jpg', name:'Beef Mechado', category:'Poultry & Meat',
     prep:'30 mins', cook:'60 mins', serves:'6–8',
     ingredients:[
       '1 kg beef sirloin or tenderloin, thinly sliced for rolling',
@@ -513,7 +521,7 @@ const RECIPES = [
     tip:'Sear meats to lock in juices and prevent them from falling apart during cooking. The alcohol in the wine evaporates during cooking, leaving only its sweetness and acidity. "Mechado" refers to the pork fat wick in the center of the meat roll that keeps it juicy throughout cooking.'
   },
   {
-    id:8, name:'Lengua Estofado', category:'Poultry & Meat',
+    id:8, img:'assets/page-21.jpg', name:'Lengua Estofado', category:'Poultry & Meat',
     prep:'30 mins', cook:'2 hrs', serves:'6–8',
     ingredients:[
       '1 kg ox tongue',
@@ -546,7 +554,7 @@ const RECIPES = [
     tip:'Peeling the ox tongue is easier while it is still warm from boiling. The tongue is fully cooked when a fork slides in easily. Lengua Estofado is best served the next day as the flavors deepen overnight.'
   },
   {
-    id:9, name:'Bulalo', category:'Poultry & Meat',
+    id:9, img:'assets/page-20.jpg', name:'Bulalo', category:'Poultry & Meat',
     prep:'30 mins', cook:'2–3 hrs', serves:'6–8',
     ingredients:[
       '1 kg beef shank, thick slices',
@@ -572,7 +580,7 @@ const RECIPES = [
     tip:'The secret to a flavorful bulalo is patience — let it simmer low and slow. Do not cover the pot completely so the broth stays clear. The bone marrow is the prized part; scoop it out and spread it on rice like butter.'
   },
   {
-    id:10, name:'Sinampalukang Manok', category:'Poultry & Meat',
+    id:10, img:'assets/page-19.jpg', name:'Sinampalukang Manok', category:'Poultry & Meat',
     prep:'30 mins', cook:'30 mins', serves:'6–8',
     ingredients:[
       '2 tbsp vegetable oil',
@@ -602,7 +610,7 @@ const RECIPES = [
     tip:'Mash the tamarind sprouts with a little coarse salt and rinse with water to remove the tart sap taste before adding to the soup. This gives a cleaner, fresher sourness to the broth.'
   },
   {
-    id:11, name:'Chicken Tinola', category:'Poultry & Meat',
+    id:11, img:'assets/page-25.jpg', name:'Chicken Tinola', category:'Poultry & Meat',
     prep:'30 mins', cook:'30 mins', serves:'6–8',
     ingredients:[
       '¼ cup vegetable oil',
@@ -628,7 +636,7 @@ const RECIPES = [
     tip:'Malunggay (moringa) leaves are more nutritious than chili leaves, and unripe papaya can replace chayote for a slightly different texture. Tinola is best served in a deep bowl with lots of broth — it is as much a soup as it is a viand.'
   },
   {
-    id:12, name:'Chicken Pork Adobo', category:'Poultry & Meat',
+    id:12, img:'assets/page-28.jpg', name:'Chicken Pork Adobo', category:'Poultry & Meat',
     prep:'15 mins', cook:'40 mins', serves:'6–8',
     ingredients:[
       '½ kg pork, cubed',
@@ -656,7 +664,7 @@ const RECIPES = [
     tip:'The classic Filipino rule for vinegar in adobo: do not stir right after adding it. Let it cook uncovered for a few minutes to allow the sharp acidity to mellow before mixing. This is what gives adobo its distinctive, balanced tang.'
   },
   {
-    id:13, name:'Spanish Garlic Chicken', category:'Poultry & Meat',
+    id:13, img:'assets/template.jpg', name:'Spanish Garlic Chicken', category:'Poultry & Meat',
     prep:'15 mins', cook:'35 mins', serves:'4–6',
     ingredients:[
       '1 kg chicken pieces, bone-in skin-on',
@@ -682,7 +690,7 @@ const RECIPES = [
     tip:'Use bone-in, skin-on chicken pieces for maximum flavor. The skin crisps beautifully and keeps the meat moist during the braise. This dish pairs beautifully with crusty bread to soak up the garlicky pan juices.'
   },
   {
-    id:14, name:'Chicken Pastel', category:'Poultry & Meat',
+    id:14, img:'assets/template.jpg', name:'Chicken Pastel', category:'Poultry & Meat',
     prep:'30 mins', cook:'50 mins', serves:'6–8',
     ingredients:[
       '1 kg chicken pieces, boiled and shredded (reserve broth)',
@@ -714,7 +722,7 @@ const RECIPES = [
     tip:'Store-bought puff pastry works perfectly as a quick alternative to homemade pie crust and gives a beautiful flaky top. Chicken Pastel is a festive dish often served at fiestas and celebrations — the creamy filling and buttery crust make it genuinely special.'
   },
   {
-    id:15, name:'Pork Embutido', category:'Poultry & Meat',
+    id:15, img:'assets/template.jpg', name:'Pork Embutido', category:'Poultry & Meat',
     prep:'30 mins', cook:'50 mins', serves:'8–10',
     ingredients:[
       '1 kg ground pork',
@@ -742,7 +750,7 @@ const RECIPES = [
     tip:'Pork Embutido keeps well in the refrigerator for up to 5 days. Slice and pan-fry leftover rounds for a delicious next-day meal. It also freezes well — steam or bake from frozen when needed.'
   },
   {
-    id:16, name:'Spanish Meatballs (Albóndigas)', category:'Poultry & Meat',
+    id:16, img:'assets/template.jpg', name:'Spanish Meatballs (Albóndigas)', category:'Poultry & Meat',
     prep:'20 mins', cook:'35 mins', serves:'6–8',
     ingredients:[
       '500 g ground beef',
@@ -772,7 +780,7 @@ const RECIPES = [
 
   // ---- SEAFOOD ----
   {
-    id:17, name:'Spanish Sardines', category:'Seafood',
+    id:17, img:'assets/page-09.jpg', name:'Spanish Sardines', category:'Seafood',
     prep:'30 mins', cook:'35 mins', serves:'6–8',
     ingredients:[
       '1 kg sardines (remove head, guts, and tail)',
@@ -802,7 +810,7 @@ const RECIPES = [
     tip:'Start counting 30 minutes only after the pressure cooker weight sizzles — not from when you first turn on the heat. If using a regular pot (no pressure cooker), simmer covered on very low heat for 1½ to 2 hours until the fish bones are completely soft.'
   },
   {
-    id:18, name:'Gambas Al Ajillo', category:'Seafood',
+    id:18, img:'assets/page-10.jpg', name:'Gambas Al Ajillo', category:'Seafood',
     prep:'15 mins', cook:'5 mins', serves:'2–4',
     ingredients:[
       '½ kg shrimps, shelled and deveined',
@@ -824,7 +832,7 @@ const RECIPES = [
     tip:'The success of Gambas Al Ajillo is speed — the whole dish takes under 5 minutes. Have everything prepped and ready before the oil hits the pan. The garlic-infused olive oil is the star; don\'t skip the crusty bread for soaking it up.'
   },
   {
-    id:19, name:'Sinigang na Hipon', category:'Seafood',
+    id:19, img:'assets/page-18.jpg', name:'Sinigang na Hipon', category:'Seafood',
     prep:'30 mins', cook:'25 mins', serves:'6–8',
     ingredients:[
       '500 g pre-washed prawns',
@@ -849,7 +857,7 @@ const RECIPES = [
     tip:'For a richer, more layered broth, mash the onions, tomato, and ginger with a little water first before boiling. Do not overcook the prawns — they turn rubbery quickly. Add them last and watch the pot.'
   },
   {
-    id:20, name:'Adobong Pusit sa Sotanghon', category:'Seafood',
+    id:20, img:'assets/page-22.jpg', name:'Adobong Pusit sa Sotanghon', category:'Seafood',
     prep:'30 mins', cook:'30 mins', serves:'6–8',
     ingredients:[
       '¼ cup vegetable oil',
@@ -879,7 +887,7 @@ const RECIPES = [
     tip:'The dramatic black color of this dish comes from the squid\'s natural ink — do not be alarmed! The ink adds a rich, briny depth of flavor that is unmistakably oceanic. Use fresh baby squid for the best result; the ink sacs should be visibly full.'
   },
   {
-    id:21, name:'Calamares Fritos', category:'Seafood',
+    id:21, img:'assets/page-27.jpg', name:'Calamares Fritos', category:'Seafood',
     prep:'20 mins', cook:'15 mins', serves:'4–6',
     ingredients:[
       '1 kg baby squid, pre-washed, dredged in ½ cup cake flour',
@@ -909,7 +917,7 @@ const RECIPES = [
 
   // ---- RICE & PAELLA ----
   {
-    id:22, name:'Arroz Valenciana', category:'Rice & Paella',
+    id:22, img:'assets/page-08.jpg', name:'Arroz Valenciana', category:'Rice & Paella',
     prep:'30 mins', cook:'30 mins', serves:'6–8',
     ingredients:[
       '4 cups glutinous rice, cooked in 5 cups chicken broth seasoned with 1 tbsp salt',
@@ -940,7 +948,7 @@ const RECIPES = [
     tip:'You can replace water with coconut milk when cooking the glutinous rice for a richer, creamier flavor. Arroz Valenciana is a festive dish — always serve it on a large platter for the whole family to share.'
   },
   {
-    id:23, name:'Spanish Garlic Chorizo Rice', category:'Rice & Paella',
+    id:23, img:'assets/page-11.jpg', name:'Spanish Garlic Chorizo Rice', category:'Rice & Paella',
     prep:'10 mins', cook:'15 mins', serves:'6–8',
     ingredients:[
       '1 tbsp butter',
@@ -965,7 +973,7 @@ const RECIPES = [
     tip:'Serve this Spanish Garlic Chorizo Rice on a large platter and eat family-style. It pairs perfectly with viands like Menudo, Afritada, and Caldereta — all the classic tomato-based dishes that share its Spanish DNA.'
   },
   {
-    id:24, name:'Sinangag (Garlic Fried Rice)', category:'Rice & Paella',
+    id:24, img:'assets/page-12.jpg', name:'Sinangag (Garlic Fried Rice)', category:'Rice & Paella',
     prep:'5 mins', cook:'15 mins', serves:'6–8',
     ingredients:[
       '¼ cup vegetable oil',
@@ -986,7 +994,7 @@ const RECIPES = [
     tip:'Native garlic (bawang) which is smaller than regular garlic is preferred — it is more fragrant and flavorful. You can even cook it with the skin on for deeper garlic flavor, just pick out the skins before serving. Use day-old refrigerated rice for the best, non-clumpy fried rice.'
   },
   {
-    id:25, name:'Bagoong Rice', category:'Rice & Paella',
+    id:25, img:'assets/page-13.jpg', name:'Bagoong Rice', category:'Rice & Paella',
     prep:'5 mins', cook:'15 mins', serves:'6–8',
     ingredients:[
       '¼ cup vegetable oil',
@@ -1007,7 +1015,7 @@ const RECIPES = [
     tip:'Bagoong or shrimp paste is readily available in every Filipino grocery store; some varieties are even sweet and spicy. Bagoong rice is the classic partner for Kare-Kare — the saltiness of the bagoong perfectly balances the rich peanut sauce of the stew.'
   },
   {
-    id:26, name:'Chicken Paella', category:'Rice & Paella',
+    id:26, img:'assets/page-29.jpg', name:'Chicken Paella', category:'Rice & Paella',
     prep:'20 mins', cook:'45 mins', serves:'6–8',
     ingredients:[
       '½ cup extra virgin olive oil',
@@ -1043,7 +1051,7 @@ const RECIPES = [
     tip:'The paella pan is flat and wide to ensure all ingredients cook evenly at the same heat. A flat non-stick pan or heavy-bottomed pan works too. Never stir the rice once it is in the broth — resist the urge! The socarrat (crispy rice at the bottom) is the most prized part of a great paella.'
   },
   {
-    id:27, name:'Paella Negra', category:'Rice & Paella',
+    id:27, img:'assets/template.jpg', name:'Paella Negra', category:'Rice & Paella',
     prep:'20 mins', cook:'45 mins', serves:'6–8',
     ingredients:[
       '500 g squid, cleaned and sliced into rings (save ink sacs)',
@@ -1074,7 +1082,7 @@ const RECIPES = [
     tip:'The dramatic jet-black color from squid ink is both beautiful and deeply flavorful — oceanic, briny, and rich. Use the full amount of ink for an authentic Paella Negra. Aioli (garlic mayonnaise) is the traditional accompaniment and cuts beautifully through the richness of the ink.'
   },
   {
-    id:28, name:'Arrozcaldo', category:'Rice & Paella',
+    id:28, img:'assets/page-26.jpg', name:'Arrozcaldo', category:'Rice & Paella',
     prep:'30 mins', cook:'35 mins', serves:'6–8',
     ingredients:[
       '¼ cup vegetable oil',
@@ -1102,7 +1110,7 @@ const RECIPES = [
 
   // ---- NOODLES & SOUPS ----
   {
-    id:29, name:'Pancit Molo', category:'Noodles & Soups',
+    id:29, img:'assets/template.jpg', name:'Pancit Molo', category:'Noodles & Soups',
     prep:'30 mins', cook:'40 mins', serves:'6–8',
     ingredients:[
       '1 pack wonton wrappers (about 50 pieces)',
@@ -1128,7 +1136,7 @@ const RECIPES = [
     tip:'Pancit Molo is a specialty of the Molo district in Iloilo City and is one of the most beloved soups in the Visayas region. If fresh wonton skins are available, use them — the texture is incomparably better than dried. Pancit Molo is typically served at New Year celebrations for good luck.'
   },
   {
-    id:30, name:'Sopas (Macaroni Soup)', category:'Noodles & Soups',
+    id:30, img:'assets/page-23.jpg', name:'Sopas (Macaroni Soup)', category:'Noodles & Soups',
     prep:'30 mins', cook:'30 mins', serves:'6–8',
     ingredients:[
       '¼ cup vegetable oil',
@@ -1163,7 +1171,7 @@ const RECIPES = [
 
   // ---- TAPAS & SIDES ----
   {
-    id:31, name:'Spanish Chicken Croquettes', category:'Tapas & Sides',
+    id:31, img:'assets/page-07.jpg', name:'Spanish Chicken Croquettes', category:'Tapas & Sides',
     prep:'30 mins', cook:'35 mins', serves:'6–8',
     ingredients:[
       '2½ cups cooked leftover chicken, shredded',
@@ -1192,7 +1200,7 @@ const RECIPES = [
     tip:'The croquette filling must be very cold and firm before shaping — do not rush this step. If the mixture is too warm it will fall apart in the oil. Croquettes can be breaded ahead of time and refrigerated or frozen, then fried to order. Perfect as a tapa starter or party appetizer.'
   },
   {
-    id:32, name:'Spanish Tortilla (Tapas)', category:'Tapas & Sides',
+    id:32, img:'assets/page-15.jpg', name:'Spanish Tortilla (Tapas)', category:'Tapas & Sides',
     prep:'5 mins', cook:'25 mins', serves:'6–8',
     ingredients:[
       '6 whole eggs, beaten',
@@ -1214,7 +1222,7 @@ const RECIPES = [
     tip:'You can add chorizo de bilbao, bell peppers, or ham to make a heartier tortilla. A Spanish tortilla is not a Mexican tortilla — it is a thick, potato-egg omelette, similar to a frittata. It is meant to be dense and moist in the center, not dry.'
   },
   {
-    id:33, name:'Eggplant Three Ways', category:'Tapas & Sides',
+    id:33, img:'assets/page-24.jpg', name:'Eggplant Three Ways', category:'Tapas & Sides',
     prep:'30 mins', cook:'30 mins', serves:'6–8',
     ingredients:[
       '1 kg long eggplants, grilled over an open flame until charred, then peeled',
@@ -1241,7 +1249,7 @@ const RECIPES = [
 
   // ---- DESSERTS ----
   {
-    id:34, name:'Churros con Chocolate', category:'Desserts',
+    id:34, img:'assets/page-14.jpg', name:'Churros con Chocolate', category:'Desserts',
     prep:'5 mins', cook:'20 mins', serves:'6–8',
     ingredients:[
       'Dough: 1 cup water, 2 tbsp butter, 1 cup all-purpose flour, 1 tsp baking powder, pinch of salt, 1 tsp sugar',
@@ -1262,7 +1270,7 @@ const RECIPES = [
     tip:'If you do not have a churro presser, fill a large piping bag fitted with a star tip and press the dough out with your thumb. Or simply drop spoonfuls of dough into the oil for "Churro Bites." Churros are best eaten immediately while still hot and crispy — they do not keep well.'
   },
   {
-    id:35, name:'Polvoron', category:'Desserts',
+    id:35, img:'assets/page-16.jpg', name:'Polvoron', category:'Desserts',
     prep:'5 mins', cook:'30 mins', serves:'36 pieces',
     ingredients:[
       '1 kg all-purpose flour',
@@ -1284,7 +1292,7 @@ const RECIPES = [
     tip:'Refrigerate polvoron for firmer texture and longer storage. They keep well for up to 2 weeks in the refrigerator or 1 month in the freezer. Variations include adding pinipig (toasted puffed rice), peanuts, or ube powder for purple yam flavor.'
   },
   {
-    id:36, name:'Mango Crema Catalana', category:'Desserts',
+    id:36, img:'assets/template.jpg', name:'Mango Crema Catalana', category:'Desserts',
     prep:'20 mins', cook:'15 mins', serves:'6',
     ingredients:[
       '500 ml heavy cream',
@@ -1308,7 +1316,7 @@ const RECIPES = [
     tip:'Use a very ripe, sweet Carabao mango for the most intense tropical flavor. The mango puree can also be swirled into the custard in a marbled pattern for a beautiful presentation. If you do not have a kitchen torch, place ramekins under the broiler for 2–3 minutes — watch carefully.'
   },
   {
-    id:37, name:'Leche Flan', category:'Desserts',
+    id:37, img:'assets/page-30.jpg', name:'Leche Flan', category:'Desserts',
     prep:'15 mins', cook:'45 mins', serves:'8–10',
     ingredients:[
       '10 egg yolks',
@@ -1334,7 +1342,7 @@ const RECIPES = [
 
   // ---- BAKED GOODS ----
   {
-    id:38, name:'Baked Chicken Empanada', category:'Baked Goods',
+    id:38, img:'assets/page-17.jpg', name:'Baked Chicken Empanada', category:'Baked Goods',
     prep:'30 mins', cook:'55 mins', serves:'12 pieces',
     ingredients:[
       'Dough: 3 cups all-purpose flour, 1 tbsp sugar, 1 tsp fine salt, 1 tbsp baking powder, 1 tsp baking soda, 1 cup cold butter (cubed), 1 whole egg, ½ cup ice water',
@@ -1408,7 +1416,9 @@ function renderGrid() {
     card.setAttribute('tabindex', '0');
     card.setAttribute('aria-label', 'View recipe for ' + r.name);
     card.innerHTML = `
-      <div class="card-stripe" style="background:${color}"></div>
+      <div class="card-img-wrap">
+        <img src="${r.img}" alt="${r.name}" class="card-img" loading="lazy" width="400" height="210">
+      </div>
       <div class="card-body">
         <p class="card-cat" style="color:${color}">${r.category}</p>
         <h3 class="card-name">${r.name}</h3>
@@ -1437,6 +1447,8 @@ function openModal(id) {
   const r = RECIPES.find(x => x.id === id);
   if (!r) return;
   const color = CAT_COLORS[r.category] || '#8B1A1A';
+  const mImg = document.getElementById('mImg');
+  mImg.src = r.img; mImg.alt = r.name;
   document.getElementById('mCat').textContent = r.category;
   document.getElementById('mCat').style.color = color;
   document.getElementById('modalTitle').textContent = r.name;
