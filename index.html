@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flavors of Heritage · Spanish-Filipino Cuisine by Jeannie Rebadulla</title>
+<meta name="description" content="A digital cookbook of 38 classic Spanish-Filipino recipes by Jeannie Rebadulla — celebrating the rich culinary heritage of the Philippines.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & TOKENS ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080402;
+  --surface:#140805;
+  --accent:#8B1A1A;
+  --accent-h:#a32020;
+  --gold:#C9922A;
+  --gold-l:#E8B84B;
+  --cream:#F5E8D0;
+  --cream-d:#C4A882;
+  --light-bg:#F8F1E7;
+  --card:#FFFFFF;
+  --dark:#1A0A03;
+  --muted:#7A5030;
+  --line-d:#1f0e06;
+  --line-l:#E0D0BA;
+  --maxw:1200px;
+  --ff-d:'Cormorant Garamond',Georgia,serif;
+  --ff-b:'Nunito',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:var(--ff-b);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+/* ===== ANIMATIONS ===== */
+.rise{opacity:0;transform:translateY(22px);animation:rise .9s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+.d1{animation-delay:.1s}.d2{animation-delay:.22s}.d3{animation-delay:.36s}
+.d4{animation-delay:.5s}.d5{animation-delay:.64s}.d6{animation-delay:.78s}
+.js .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.js .reveal.in{opacity:1;transform:none}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+@keyframes drift1{from{transform:translate(0,0) scale(1)}to{transform:translate(8vw,6vh) scale(1.15)}}
+@keyframes drift2{from{transform:translate(0,0) scale(1)}to{transform:translate(-6vw,-8vh) scale(1.2)}}
+@keyframes drift3{from{transform:translate(0,0)}to{transform:translate(-4vw,5vh) scale(.9)}}
+
+/* ===== NAV ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,backdrop-filter .4s}
+.nav.scrolled{background:rgba(8,4,2,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,146,42,.15)}
+.nav-brand{font-family:var(--ff-d);font-size:21px;font-weight:600;color:var(--gold);letter-spacing:.02em}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cream-d);transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+@media(max-width:580px){.nav-links{display:none}}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:120px 24px 90px}
+.hero-orbs{position:absolute;inset:0;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.32}
+.orb-1{width:65vw;height:65vw;max-width:720px;max-height:720px;background:radial-gradient(circle,#8B1A1A,transparent 70%);top:-12%;left:-18%;animation:drift1 20s ease-in-out infinite alternate}
+.orb-2{width:55vw;height:55vw;max-width:640px;max-height:640px;background:radial-gradient(circle,#C9922A,transparent 70%);bottom:-8%;right:-12%;animation:drift2 24s ease-in-out infinite alternate}
+.orb-3{width:38vw;height:38vw;max-width:420px;max-height:420px;background:radial-gradient(circle,#5a0f0f,transparent 70%);top:28%;left:58%;animation:drift3 17s ease-in-out infinite alternate}
+.hero-content{position:relative;z-index:1;max-width:780px}
+.hero-eyebrow{font-size:12px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+.hero-title{font-family:var(--ff-d);font-size:clamp(58px,11vw,124px);font-weight:700;line-height:.95;color:var(--cream);margin-bottom:18px}
+.hero-title em{color:var(--gold);font-style:italic;display:block}
+.hero-sub{font-family:var(--ff-d);font-size:clamp(16px,2.5vw,24px);font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-d);margin-bottom:22px}
+.hero-desc{font-size:15px;color:var(--cream-d);max-width:48ch;margin:0 auto 20px;line-height:1.75}
+.hero-author{font-family:var(--ff-d);font-size:19px;font-style:italic;color:var(--cream-d);margin-bottom:42px}
+.hero-author strong{color:var(--cream);font-style:normal}
+.hero-cta{display:inline-block;background:var(--accent);color:var(--cream);font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:15px 38px;border-radius:2px;transition:background .2s,transform .2s}
+.hero-cta:hover{background:var(--accent-h);transform:translateY(-2px)}
+.hero-arrow{position:absolute;bottom:32px;left:50%;font-size:22px;color:var(--cream-d);opacity:.45;animation:bounce 2.2s ease-in-out infinite}
+
+/* ===== AUTHOR ===== */
+.author-section{background:var(--surface);padding:clamp(80px,10vw,130px) 0;border-top:1px solid var(--line-d)}
+.author-inner{display:grid;grid-template-columns:220px 1fr;gap:64px;align-items:center}
+@media(max-width:720px){.author-inner{grid-template-columns:1fr;text-align:center}}
+.author-portrait-wrap{display:flex;justify-content:center}
+.author-portrait{width:190px;height:190px;border-radius:50%;border:2px solid var(--gold);background:linear-gradient(135deg,#3d1a0a,#140805);display:flex;align-items:center;justify-content:center;position:relative}
+.author-portrait::after{content:'';position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 40px rgba(0,0,0,.6),0 0 0 8px rgba(201,146,42,.08)}
+.author-monogram{font-family:var(--ff-d);font-size:70px;font-weight:600;color:var(--gold);opacity:.75;line-height:1;position:relative;z-index:1}
+.author-eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.author-name{font-family:var(--ff-d);font-size:clamp(32px,5vw,54px);font-weight:600;color:var(--cream);margin-bottom:18px;line-height:1.05}
+.author-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+@media(max-width:720px){.author-tags{justify-content:center}}
+.author-tag{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 13px;border:1.5px solid rgba(201,146,42,.5);color:var(--gold);border-radius:2px}
+.author-bio{font-size:15.5px;line-height:1.8;color:var(--cream-d)}
+.author-bio+.author-bio{margin-top:14px}
+@media(max-width:720px){.author-bio{margin:0 auto;max-width:56ch}}
+.author-quote{font-family:var(--ff-d);font-size:clamp(18px,2.5vw,22px);font-style:italic;color:var(--gold-l);margin-top:28px;line-height:1.5}
+
+/* ===== RECIPES SECTION ===== */
+.recipes-section{background:var(--light-bg);padding:clamp(80px,10vw,120px) 0}
+.recipes-header{text-align:center;margin-bottom:48px}
+.recipes-header h2{font-family:var(--ff-d);font-size:clamp(36px,6vw,60px);font-weight:600;color:var(--dark);margin-bottom:10px}
+.recipes-header p{font-size:15px;color:var(--muted)}
+.search-wrap{max-width:520px;margin:0 auto 28px;position:relative}
+.search-input{width:100%;padding:14px 48px 14px 20px;border:2px solid var(--line-l);border-radius:4px;font-family:var(--ff-b);font-size:15px;color:var(--dark);background:#fff;outline:none;transition:border .2s}
+.search-input:focus{border-color:var(--accent)}
+.search-icon{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:20px;pointer-events:none;font-style:normal}
+.cat-filter{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:44px}
+.cat-btn{padding:8px 18px;border-radius:100px;font-size:13px;font-weight:600;letter-spacing:.04em;border:1.5px solid var(--line-l);color:var(--muted);background:transparent;transition:all .2s}
+.cat-btn:hover{border-color:var(--accent);color:var(--accent)}
+.cat-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.recipe-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+@media(max-width:1080px){.recipe-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:740px){.recipe-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:460px){.recipe-grid{grid-template-columns:1fr}}
+.recipe-card{background:var(--card);border-radius:6px;overflow:hidden;box-shadow:0 2px 14px rgba(26,10,3,.07);transition:transform .25s,box-shadow .25s;cursor:pointer;display:flex;flex-direction:column}
+.recipe-card:hover{transform:translateY(-5px);box-shadow:0 10px 32px rgba(26,10,3,.14)}
+.card-stripe{height:5px}
+.card-body{padding:20px;flex:1;display:flex;flex-direction:column}
+.card-cat{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.card-name{font-family:var(--ff-d);font-size:19px;font-weight:600;color:var(--dark);line-height:1.2;flex:1;margin-bottom:14px}
+.card-meta{display:flex;gap:14px;font-size:12px;color:var(--muted);margin-bottom:16px;flex-wrap:wrap}
+.card-btn{display:block;width:100%;padding:10px;text-align:center;background:var(--light-bg);border:1.5px solid var(--line-l);color:var(--dark);font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-radius:4px;transition:all .2s}
+.card-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.no-results{text-align:center;padding:60px 24px;font-family:var(--ff-d);font-size:26px;color:var(--muted)}
+
+/* ===== MODAL ===== */
+.modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(8,4,2,.88);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-card{background:#fff;border-radius:8px;width:100%;max-width:920px;max-height:92vh;overflow-y:auto;position:relative;transform:scale(.95) translateY(12px);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.modal-overlay.open .modal-card{transform:none}
+.modal-close-btn{position:sticky;top:12px;float:right;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.1);color:#555;font-size:15px;display:flex;align-items:center;justify-content:center;margin:12px 12px -12px auto;transition:background .2s;z-index:10}
+.modal-close-btn:hover{background:rgba(0,0,0,.2)}
+.modal-header{padding:40px 40px 26px;background:linear-gradient(135deg,#1a0a03 0%,#3d1a0a 100%);color:var(--cream);clear:both}
+@media(max-width:580px){.modal-header{padding:30px 22px 22px}}
+.modal-cat-badge{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:10px}
+.modal-title{font-family:var(--ff-d);font-size:clamp(26px,5vw,44px);font-weight:600;color:var(--cream);line-height:1.1;margin-bottom:20px}
+.modal-meta-row{display:flex;flex-wrap:wrap;gap:24px}
+.modal-meta-item{font-size:14px;color:var(--cream-d)}
+.modal-meta-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:3px}
+.modal-body-wrap{display:grid;grid-template-columns:1fr 1.35fr}
+@media(max-width:620px){.modal-body-wrap{grid-template-columns:1fr}}
+.modal-ingredients{padding:32px 28px 32px 40px;border-right:1px solid #f0e8d8;background:#fdf9f4}
+@media(max-width:620px){.modal-ingredients{border-right:none;border-bottom:1px solid #f0e8d8;padding:24px}}
+.modal-instructions{padding:32px 40px 32px 28px;background:#fff}
+@media(max-width:620px){.modal-instructions{padding:24px}}
+.modal-col-title{font-family:var(--ff-d);font-size:21px;font-weight:600;color:var(--accent);margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid var(--accent)}
+.modal-ingredients ul{list-style:none}
+.modal-ingredients li{padding:8px 0;border-bottom:1px solid #f0e8d8;font-size:14.5px;color:var(--dark);line-height:1.45;display:flex;align-items:flex-start;gap:10px}
+.modal-ingredients li::before{content:'·';color:var(--accent);font-size:22px;line-height:1;flex-shrink:0;margin-top:1px}
+.modal-instructions ol{list-style:none;counter-reset:steps}
+.modal-instructions li{counter-increment:steps;padding:10px 0;border-bottom:1px solid #f5f0e8;font-size:14.5px;color:var(--dark);line-height:1.65;display:flex;gap:14px}
+.modal-instructions li::before{content:counter(steps);min-width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.modal-tip{margin:0 40px 40px;padding:20px 24px;background:linear-gradient(135deg,#fff8ee,#fff3e0);border-left:4px solid var(--gold);border-radius:4px}
+@media(max-width:580px){.modal-tip{margin:0 22px 28px}}
+.modal-tip-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.modal-tip-text{font-size:14px;color:var(--dark);line-height:1.75}
+
+/* ===== FOOTER ===== */
+footer{background:var(--bg);padding:64px 24px;text-align:center;border-top:1px solid var(--line-d)}
+.footer-logo{font-family:var(--ff-d);font-size:30px;font-weight:600;color:var(--gold);margin-bottom:8px}
+.footer-sub{font-size:14px;color:var(--cream-d);margin-bottom:28px}
+.footer-rule{width:60px;height:1px;background:rgba(201,146,42,.35);margin:0 auto 28px}
+.footer-credit{font-size:13px;color:var(--cream-d);opacity:.55}
+.footer-credit a{color:var(--gold);opacity:1}
+
+/* ===== REDUCED MOTION ===== */
+@media(prefers-reduced-motion:reduce){
+  .rise{opacity:1;transform:none;animation:none}
+  .js .reveal{opacity:1;transform:none;transition:none}
+  .orb{animation:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.className='js'</script>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <a href="#home" class="nav-brand">Flavors of Heritage</a>
+  <div class="nav-links">
+    <a href="#recipes">Recipes</a>
+    <a href="#author">About the Author</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow rise d1">A Digital Cookbook</p>
+    <h1 class="hero-title rise d2">Flavors of<em>Heritage</em></h1>
+    <p class="hero-sub rise d3">Spanish-Filipino Cuisine</p>
+    <p class="hero-desc rise d4">38 Classic Recipes Inspired by Spanish Influence in the Philippines</p>
+    <p class="hero-author rise d5">By <strong>Jeannie Rebadulla</strong></p>
+    <a href="#recipes" class="hero-cta rise d6">Explore Recipes &rarr;</a>
+  </div>
+  <div class="hero-arrow">&#8595;</div>
+</section>
+
+<!-- AUTHOR -->
+<section class="author-section" id="author">
+  <div class="author-inner wrap reveal">
+    <div class="author-portrait-wrap">
+      <div class="author-portrait">
+        <span class="author-monogram">JR</span>
+      </div>
+    </div>
+    <div>
+      <p class="author-eyebrow">About the Author</p>
+      <h2 class="author-name">Jeannie Rebadulla</h2>
+      <div class="author-tags">
+        <span class="author-tag">Pastor</span>
+        <span class="author-tag">Woman of God</span>
+        <span class="author-tag">Visionary</span>
+        <span class="author-tag">Amazing Cook</span>
+      </div>
+      <p class="author-bio">Jeannie Rebadulla is a woman of faith, a dedicated pastor, and a visionary whose love for bringing people together through food has inspired generations. A gifted cook with roots deeply embedded in Filipino culture and its rich Spanish colonial heritage, Jeannie channels her warmth, creativity, and nurturing spirit into every dish she creates.</p>
+      <p class="author-bio">Her recipes are more than instructions &mdash; they are invitations to gather, to celebrate, and to pass on the treasured flavors of our heritage. Through <em>Flavors of Heritage</em>, she shares not just her culinary wisdom, but a piece of her heart, her faith, and her profound belief that food is one of God&rsquo;s most beautiful gifts to humanity.</p>
+      <p class="author-quote">&ldquo;Cook with love, serve with joy, and gather often.&rdquo;</p>
+    </div>
+  </div>
+</section>
+
+<!-- RECIPES -->
+<section class="recipes-section" id="recipes">
+  <div class="wrap">
+    <div class="recipes-header reveal">
+      <h2>The Recipes</h2>
+      <p>Browse all 38 classic Spanish-Filipino dishes</p>
+    </div>
+    <div class="reveal">
+      <div class="search-wrap">
+        <input type="text" class="search-input" id="searchInput" placeholder="Search — try &ldquo;adobo&rdquo;, &ldquo;leche flan&rdquo;, &ldquo;paella&rdquo;&hellip;" aria-label="Search recipes">
+        <i class="search-icon" aria-hidden="true">&#9906;</i>
+      </div>
+      <div class="cat-filter" id="catFilter" role="group" aria-label="Filter by category"></div>
+    </div>
+    <div class="recipe-grid" id="recipeGrid" aria-live="polite"></div>
+    <div class="no-results" id="noResults" style="display:none">No recipes found. Try a different search or category.</div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-card" id="modalCard">
+    <button class="modal-close-btn" id="modalClose" aria-label="Close recipe">&times;</button>
+    <div class="modal-header">
+      <span class="modal-cat-badge" id="mCat"></span>
+      <h2 class="modal-title" id="modalTitle"></h2>
+      <div class="modal-meta-row" id="mMeta"></div>
+    </div>
+    <div class="modal-body-wrap">
+      <div class="modal-ingredients">
+        <h3 class="modal-col-title">Ingredients</h3>
+        <ul id="mIngredients"></ul>
+      </div>
+      <div class="modal-instructions">
+        <h3 class="modal-col-title">Instructions</h3>
+        <ol id="mInstructions"></ol>
+      </div>
+    </div>
+    <div class="modal-tip" id="mTip">
+      <p class="modal-tip-label">Cook&rsquo;s Tip</p>
+      <p class="modal-tip-text" id="mTipText"></p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-logo">Flavors of Heritage</p>
+  <p class="footer-sub">Spanish-Filipino Cuisine &mdash; by Jeannie Rebadulla</p>
+  <div class="footer-rule"></div>
+  <p class="footer-credit">Designed &amp; built by <a href="#">Less Is More Personalized Designs</a> &middot; Philippines &middot; 2026</p>
+</footer>
+
+<script>
+// ===== CATEGORY COLORS =====
+const CAT_COLORS = {
+  'Poultry & Meat': '#8B1A1A',
+  'Seafood':        '#1A4E8B',
+  'Rice & Paella':  '#7A5A1A',
+  'Noodles & Soups':'#2A6B3A',
+  'Tapas & Sides':  '#5A2A7A',
+  'Desserts':       '#8B1A5A',
+  'Baked Goods':    '#5A3A1A',
+};
+
+// ===== RECIPE DATA =====
+const RECIPES = [
+  // ---- POULTRY & MEAT ----
+  {
+    id:1, name:'Chicken / Pork Afritada', category:'Poultry & Meat',
+    prep:'30 mins', cook:'40 mins', serves:'6–8',
+    ingredients:[
+      '1 kg chicken or pork, cut into serving pieces',
+      '2 tbsp cooking oil',
+      '4 cloves garlic, minced',
+      '1 large onion, chopped',
+      '¼ cup soy sauce (optional)',
+      '2 cups tomato sauce',
+      '2 tbsp tomato paste (optional)',
+      '1 cup water or chicken broth',
+      '2 potatoes, cubed',
+      '1 carrot, cubed',
+      '2 red bell peppers, sliced',
+      'Salt and pepper to taste'
+    ],
+    instructions:[
+      'Heat oil in a pan and sauté onion until translucent. Add garlic and cook until fragrant.',
+      'Add chicken or pork pieces and cook until lightly browned.',
+      'Pour in 1 cup water or chicken broth, then simmer for 15 minutes.',
+      'Add potatoes and carrots and cook until tender.',
+      'Add tomato sauce and tomato paste. Stir to combine.',
+      'Season with salt and pepper, then add bell pepper slices.',
+      'Simmer for another 5 minutes before serving.'
+    ],
+    tip:'For deeper flavor, marinate the chicken or pork in onion, garlic, soy sauce, and a little calamansi juice for 30 minutes before cooking. Brown the meat first in heated oil, then add the marinade and proceed to step 3.'
+  },
+  {
+    id:2, name:'Pork Menudo', category:'Poultry & Meat',
+    prep:'30 mins', cook:'40 mins', serves:'6–8',
+    ingredients:[
+      '1 kg pork, cut into serving pieces',
+      '¼ kg pork liver, cut into cubes',
+      '2 tbsp cooking oil',
+      '4 cloves garlic, minced',
+      '1 large onion, chopped',
+      '¼ cup soy sauce (optional)',
+      '2 cups tomato sauce',
+      '2 tbsp tomato paste (optional)',
+      '1½ cups water or pork broth',
+      '2 potatoes, cubed',
+      '1 carrot, cubed',
+      '2 red bell peppers, sliced',
+      '½ cup raisins',
+      '½ cup cooked chickpeas',
+      'Salt and pepper to taste'
+    ],
+    instructions:[
+      'Heat oil in a pan and sauté onion until translucent. Add garlic and cook until fragrant.',
+      'Add pork pieces and cook until lightly browned.',
+      'Pour in water or pork broth, then simmer for 15 minutes.',
+      'Add potatoes and carrots and cook until tender.',
+      'Add pork liver and cook for another 5 minutes.',
+      'Add tomato sauce and tomato paste. Stir well.',
+      'Season with salt and pepper.',
+      'Add bell peppers, chickpeas, and raisins.',
+      'Simmer for another 5 minutes before serving.'
+    ],
+    tip:'For deeper flavor, marinate pork in onion, garlic, soy sauce, and a little calamansi juice for at least 30 minutes before cooking — or overnight in the refrigerator. Brown lightly then add herbs like 1 tsp dried basil and 1 tsp dried oregano before adding the marinade.'
+  },
+  {
+    id:3, name:'Cheesy Beef Caldereta', category:'Poultry & Meat',
+    prep:'30 mins', cook:'40 mins', serves:'6–8',
+    ingredients:[
+      '1 kg beef sirloin, cubed into serving pieces',
+      '2 tbsp cooking oil',
+      '4 cloves garlic, minced',
+      '1 large onion, chopped',
+      '¼ cup soy sauce (optional)',
+      '1 cup tomato sauce',
+      '2 tbsp tomato paste (optional)',
+      '2 cups water or beef broth',
+      '2 potatoes, cubed',
+      '1 large carrot, cubed',
+      '2 red and green bell peppers, sliced',
+      '1 small can liver spread',
+      '½ cup quick-melt grated cheese',
+      '½ cup peanut butter',
+      '2 tbsp butter',
+      'Salt and pepper to taste'
+    ],
+    instructions:[
+      'Heat oil in a pan and sauté onion until translucent. Add garlic and cook until fragrant.',
+      'Add beef cubes and cook until lightly browned. Add the liver spread and stir.',
+      'Pour in 2 cups water or beef broth, then boil until fork-tender. Add more water as needed.',
+      'Add potatoes and carrots and cook until tender.',
+      'Add tomato sauce and tomato paste.',
+      'Add peanut butter and cheese until well blended.',
+      'Season with salt and pepper and add bell peppers.',
+      'Simmer for another 5 minutes, then add butter for extra richness before serving.'
+    ],
+    tip:'For deeper flavor, marinate the beef in onion, garlic, soy sauce, and a little calamansi juice for 30 minutes before cooking. Brown the meat lightly then add the marinade and proceed to the next steps.'
+  },
+  {
+    id:4, name:'Picadillo', category:'Poultry & Meat',
+    prep:'30 mins', cook:'40 mins', serves:'6–8',
+    ingredients:[
+      '1 kg ground beef or pork',
+      '2 tbsp cooking oil',
+      '4 cloves garlic, minced',
+      '1 large onion, chopped',
+      '¼ cup soy sauce (optional)',
+      '1 cup tomato sauce',
+      '2 tbsp tomato paste (optional)',
+      '1 cup water or beef broth',
+      '2 potatoes, diced',
+      '1 large carrot, diced',
+      '1 red and 1 green bell pepper, diced',
+      '1 cup green peas',
+      '½ cup raisins (optional)',
+      'Salt and pepper to taste'
+    ],
+    instructions:[
+      'Heat oil in a pan and sauté onion until translucent. Add garlic and cook until fragrant.',
+      'Add ground beef or pork and cook until lightly browned.',
+      'Pour in 1 cup water or broth, then boil until the meat is cooked.',
+      'Add cubed potatoes and carrots, cook until tender.',
+      'Add tomato sauce and tomato paste.',
+      'Season with salt and pepper, then add green peas and bell pepper.',
+      'Add raisins if using. Simmer for another 5 minutes before serving.'
+    ],
+    tip:'You can fry some bananas as a side for this lovely dish. To remove the gaminess of pork or beef, add 1 tsp of grated ginger after browning the meat and sauté for 3 minutes before adding the liquid.'
+  },
+  {
+    id:5, name:'Ox Tail & Cheek Kare-Kare', category:'Poultry & Meat',
+    prep:'30 mins', cook:'2 hrs', serves:'6–8',
+    ingredients:[
+      '1 kg beef cheeks and tail, cut into serving pieces',
+      '¼ cup glutinous rice flour, roasted on a pan until light brown',
+      '2 tbsp cooking oil',
+      '¼ cup annatto seeds (atsuete)',
+      '4 cloves garlic, minced',
+      '1 large onion, chopped',
+      'Beef broth as needed',
+      '1 medium banana heart, sliced into 4 pieces',
+      '2 eggplant slices',
+      '4 heads pechay (snow cabbage)',
+      '1 cup sitaw (snake beans / yard-long beans)',
+      '½ cup peanut butter',
+      'Salt or fish sauce and pepper to taste'
+    ],
+    instructions:[
+      'Boil beef cheeks and tail until fork-tender, keeping water just above the meat. Reserve the broth.',
+      'Heat oil in a pan and add annatto seeds to color the oil deep red or orange. Remove the seeds. Sauté onion until translucent and add garlic until fragrant.',
+      'Add beef pieces and cook until lightly browned.',
+      'Add the roasted glutinous rice flour and stir well while pouring in the beef broth. Add more broth as needed and bring to a rapid boil.',
+      'Add all vegetables except pechay and cook until almost tender.',
+      'Add peanut butter and mix until well blended.',
+      'Season with salt or fish sauce and pepper.',
+      'Add the pechay last and simmer for another 5 minutes or until cooked.',
+      'Serve with sautéed spicy sweet fermented shrimp (bagoong) on the side.'
+    ],
+    tip:'For the bagoong: soak 1 cup fermented shrimp in ½ cup white vinegar with ¼ cup brown sugar for 30 mins. Sauté 1 small onion, 2 cloves garlic, and 1 tomato in oil until cooked, pour in the soaked shrimp and bring to a boil. Add 1 diced red chili. You can also add chicharrón (fried pork rind) or bagnet for crunch.'
+  },
+  {
+    id:6, name:'Bistek Tagalog', category:'Poultry & Meat',
+    prep:'15 mins', cook:'20 mins', serves:'4–6',
+    ingredients:[
+      '500 g beef sirloin, thinly sliced',
+      '¼ cup soy sauce',
+      '¼ cup calamansi or lemon juice',
+      '1 tsp ground black pepper',
+      '2 large white onions, sliced into rings',
+      '3 cloves garlic, crushed',
+      '3 tbsp cooking oil',
+      '¼ cup water'
+    ],
+    instructions:[
+      'Marinate beef in soy sauce, calamansi juice, and pepper for at least 30 minutes.',
+      'Heat oil in a pan and fry onion rings until soft and translucent. Set aside.',
+      'In the same pan, sear beef slices in batches until lightly browned on both sides.',
+      'Pour in the marinade and ¼ cup water. Bring to a boil.',
+      'Simmer until the sauce reduces and thickens slightly, about 10–12 minutes.',
+      'Top with the sautéed onion rings.',
+      'Serve hot with steamed rice.'
+    ],
+    tip:'For extra tender beef, marinate overnight in the refrigerator. Use calamansi juice (Filipino lime) for the most authentic flavor. Beef should be pounded thin or sliced against the grain for the best texture.'
+  },
+  {
+    id:7, name:'Beef Mechado', category:'Poultry & Meat',
+    prep:'30 mins', cook:'60 mins', serves:'6–8',
+    ingredients:[
+      '1 kg beef sirloin or tenderloin, thinly sliced for rolling',
+      '¼ kg pork fat, cut to same length as hotdog',
+      '2 pieces jumbo hotdog or sausage',
+      '¼ cup room-temperature butter',
+      'Salt and pepper to taste',
+      '1 large red bell pepper, sliced',
+      '1 large green bell pepper, cubed',
+      '1 large white onion, chopped',
+      '6 cloves garlic, minced',
+      '1 cup chopped tomatoes',
+      '2 tbsp tomato paste',
+      '500 g tomato sauce',
+      '¼ cup cooking oil or olive oil',
+      '¼ cup soy sauce',
+      '¼ cup calamansi juice',
+      '2–3 cups beef stock or broth',
+      '4 bay leaves',
+      '½ kg potatoes, quartered',
+      '2 large carrots, cut into large cubes',
+      '½ cup red wine',
+      '2 tbsp sugar (to balance acidity)',
+      'Soy sauce to taste'
+    ],
+    instructions:[
+      'Lay beef slices flat, season with salt and pepper, then place pork fat and hotdog pieces in the center. Roll tightly and secure with cooking twine.',
+      'Sear the beef rolls in hot oil until browned on all sides. Remove and set aside.',
+      'In the same pan, sauté onion and garlic until fragrant. Add tomatoes and cook until soft.',
+      'Add soy sauce, calamansi juice, tomato sauce, and tomato paste. Stir well.',
+      'Return beef rolls to the pan. Add beef broth, bay leaves, and red wine.',
+      'Simmer covered for 40–45 minutes until beef is tender.',
+      'Add potatoes, carrots, and bell peppers. Cook until tender.',
+      'Season with sugar, salt, and soy sauce to taste. Slice rolls and serve with the sauce.'
+    ],
+    tip:'Sear meats to lock in juices and prevent them from falling apart during cooking. The alcohol in the wine evaporates during cooking, leaving only its sweetness and acidity. "Mechado" refers to the pork fat wick in the center of the meat roll that keeps it juicy throughout cooking.'
+  },
+  {
+    id:8, name:'Lengua Estofado', category:'Poultry & Meat',
+    prep:'30 mins', cook:'2 hrs', serves:'6–8',
+    ingredients:[
+      '1 kg ox tongue',
+      '¼ cup soy sauce',
+      '¼ cup calamansi or lemon juice',
+      '¼ cup olive oil',
+      '2 large onions, chopped',
+      '1 cup diced tomatoes',
+      '4 bay leaves',
+      '1 tbsp peppercorns',
+      '6 cloves garlic, crushed and diced',
+      '1 red bell pepper, sliced',
+      '1 green bell pepper, sliced',
+      '½ cup pitted black or green olives',
+      '1 cup tomato sauce',
+      '2 tbsp tomato paste',
+      '2–3 cups beef broth',
+      '½ cup red wine'
+    ],
+    instructions:[
+      'Boil ox tongue in a large pot of water with bay leaves and peppercorns for 1½–2 hours until tender. Let cool, then peel off the rough outer skin.',
+      'Slice the tongue into serving pieces. Marinate in soy sauce and calamansi juice for 30 minutes.',
+      'Heat olive oil in a pan and sear the tongue slices until browned. Set aside.',
+      'Sauté onion and garlic until translucent. Add diced tomatoes and cook until soft.',
+      'Add tomato sauce, tomato paste, beef broth, and red wine. Stir to combine.',
+      'Return the tongue to the pan. Add bay leaves and simmer for 20–25 minutes.',
+      'Add olives and bell peppers in the last 5 minutes of cooking.',
+      'Adjust seasoning and serve.'
+    ],
+    tip:'Peeling the ox tongue is easier while it is still warm from boiling. The tongue is fully cooked when a fork slides in easily. Lengua Estofado is best served the next day as the flavors deepen overnight.'
+  },
+  {
+    id:9, name:'Bulalo', category:'Poultry & Meat',
+    prep:'30 mins', cook:'2–3 hrs', serves:'6–8',
+    ingredients:[
+      '1 kg beef shank, thick slices',
+      '2 large onions, chopped',
+      '2 thumbs-sized ginger, thinly sliced',
+      '1 liter water or beef broth',
+      '¼ cup fish sauce and ground pepper to taste',
+      '1 large sweet potato, cut into pieces',
+      '1 large potato, cut into pieces',
+      '2 whole large tomatoes',
+      '4 heads petchay (Chinese white cabbage)',
+      '1 stem leeks, cut into thick slices'
+    ],
+    instructions:[
+      'In a large pot, combine beef shanks with onions, ginger, and water. Bring to a boil.',
+      'Skim off impurities and foam from the surface.',
+      'Lower heat and simmer for 2–3 hours until the meat is very tender and the marrow is soft.',
+      'Add potatoes and sweet potato, cook until tender.',
+      'Add tomatoes and petchay. Simmer for 5 more minutes.',
+      'Add leeks and season generously with fish sauce and pepper.',
+      'Serve hot in the pot, letting everyone scoop their own.'
+    ],
+    tip:'The secret to a flavorful bulalo is patience — let it simmer low and slow. Do not cover the pot completely so the broth stays clear. The bone marrow is the prized part; scoop it out and spread it on rice like butter.'
+  },
+  {
+    id:10, name:'Sinampalukang Manok', category:'Poultry & Meat',
+    prep:'30 mins', cook:'30 mins', serves:'6–8',
+    ingredients:[
+      '2 tbsp vegetable oil',
+      '1 kg chicken, cut into pieces',
+      '1 large onion, chopped',
+      '2 thumbs-sized ginger, thinly sliced',
+      '4 small bell peppers',
+      '2 long green chilies (siling pang sigang)',
+      '1 radish, sliced diagonally',
+      '5 snake beans, cut to 3-inch lengths',
+      '2 eggplants, sliced diagonally',
+      '1 cup pre-washed sampaloc (tamarind) leaf sprouts',
+      '1 liter chicken broth',
+      '1 small pack sinigang mix or tamarind powder',
+      '¼ cup fish sauce and ground pepper to taste'
+    ],
+    instructions:[
+      'Heat oil in a pot and sauté ginger until fragrant.',
+      'Add onion and cook until translucent.',
+      'Add chicken pieces and brown lightly on all sides.',
+      'Pour in chicken broth and bring to a boil. Simmer for 15 minutes.',
+      'Add sinigang mix or tamarind powder and stir to dissolve.',
+      'Add radish and snake beans, cook until almost tender.',
+      'Add eggplants and bell peppers. Season with fish sauce and pepper.',
+      'Add green chilies and tamarind leaf sprouts last. Cook for 2 more minutes and serve.'
+    ],
+    tip:'Mash the tamarind sprouts with a little coarse salt and rinse with water to remove the tart sap taste before adding to the soup. This gives a cleaner, fresher sourness to the broth.'
+  },
+  {
+    id:11, name:'Chicken Tinola', category:'Poultry & Meat',
+    prep:'30 mins', cook:'30 mins', serves:'6–8',
+    ingredients:[
+      '¼ cup vegetable oil',
+      '1 kg chicken pieces, pre-washed',
+      '1 large onion, chopped',
+      '2 thumbs-sized ginger, sliced',
+      '1 stick lemongrass',
+      '¼ cup fish sauce',
+      'Ground black pepper to taste',
+      '2 liters chicken broth',
+      '2 pieces chayote, cut into wedges',
+      'Chili leaves or malunggay (moringa) leaves'
+    ],
+    instructions:[
+      'Heat oil in a pot and sauté ginger until fragrant. Add onion and cook until translucent.',
+      'Add chicken pieces and cook until lightly browned. Season with fish sauce.',
+      'Add lemongrass and pour in chicken broth. Bring to a boil.',
+      'Lower heat and simmer for 20 minutes or until chicken is cooked through.',
+      'Add chayote wedges and cook until tender, about 8–10 minutes.',
+      'Add chili leaves or moringa leaves. Season with pepper.',
+      'Cook for 2 more minutes and serve hot.'
+    ],
+    tip:'Malunggay (moringa) leaves are more nutritious than chili leaves, and unripe papaya can replace chayote for a slightly different texture. Tinola is best served in a deep bowl with lots of broth — it is as much a soup as it is a viand.'
+  },
+  {
+    id:12, name:'Chicken Pork Adobo', category:'Poultry & Meat',
+    prep:'15 mins', cook:'40 mins', serves:'6–8',
+    ingredients:[
+      '½ kg pork, cubed',
+      '½ kg chicken pieces',
+      '¼ cup minced garlic',
+      '¼ cup sliced ginger',
+      '¼ cup vegetable oil',
+      '½ cup cane vinegar',
+      '¼ cup soy sauce',
+      '2 tbsp fish sauce',
+      '4 bay leaves',
+      '1 tbsp black peppercorns',
+      '2 potatoes, cut into wedges',
+      '500 ml chicken or pork broth'
+    ],
+    instructions:[
+      'Heat oil in a pot. Sauté garlic and ginger until fragrant.',
+      'Add the pork and chicken. Stir well to absorb the flavor of garlic and ginger.',
+      'Season with fish sauce and stir.',
+      'Add bay leaves, black peppercorns, vinegar, and soy sauce. Simmer without stirring for 3 minutes.',
+      'Pour in the broth and bring to a boil until pork and chicken are fork-tender.',
+      'Add the potatoes and boil until cooked and the broth has reduced and thickened slightly in oil.',
+      'Serve hot with steamed rice.'
+    ],
+    tip:'The classic Filipino rule for vinegar in adobo: do not stir right after adding it. Let it cook uncovered for a few minutes to allow the sharp acidity to mellow before mixing. This is what gives adobo its distinctive, balanced tang.'
+  },
+  {
+    id:13, name:'Spanish Garlic Chicken', category:'Poultry & Meat',
+    prep:'15 mins', cook:'35 mins', serves:'4–6',
+    ingredients:[
+      '1 kg chicken pieces, bone-in skin-on',
+      '½ cup olive oil',
+      '1 head garlic, crushed and finely minced',
+      '2 tbsp sweet paprika',
+      '1 tsp dried oregano',
+      '1 tsp dried thyme',
+      '¼ cup white wine or chicken broth',
+      'Juice and zest of 1 lemon',
+      'Salt and ground pepper to taste',
+      'Fresh parsley, coarsely chopped, for garnish'
+    ],
+    instructions:[
+      'Marinate chicken in olive oil, half the garlic, paprika, oregano, thyme, lemon zest, salt, and pepper for at least 1 hour.',
+      'Heat a large pan or skillet over medium-high heat. Sear chicken skin-side down until golden and crisp, about 6–7 minutes.',
+      'Flip and cook the other side for 4 minutes. Remove and set aside.',
+      'In the same pan, sauté remaining garlic until fragrant and lightly golden.',
+      'Add white wine or broth and lemon juice, scraping up any browned bits.',
+      'Return chicken to the pan. Cover and simmer over low heat for 20 minutes or until fully cooked.',
+      'Garnish with fresh parsley and serve.'
+    ],
+    tip:'Use bone-in, skin-on chicken pieces for maximum flavor. The skin crisps beautifully and keeps the meat moist during the braise. This dish pairs beautifully with crusty bread to soak up the garlicky pan juices.'
+  },
+  {
+    id:14, name:'Chicken Pastel', category:'Poultry & Meat',
+    prep:'30 mins', cook:'50 mins', serves:'6–8',
+    ingredients:[
+      '1 kg chicken pieces, boiled and shredded (reserve broth)',
+      '2 tbsp butter',
+      '2 tbsp all-purpose flour',
+      '1 large onion, chopped',
+      '4 cloves garlic, minced',
+      '2 cups reserved chicken broth',
+      '½ cup milk or cream',
+      '1 cup mixed vegetables (carrots, potatoes, green peas)',
+      '1 cup button mushrooms, sliced',
+      '2 pieces hotdogs, sliced',
+      '¼ cup grated cheese',
+      'Salt and pepper to taste',
+      'Pre-made pie crust or puff pastry for topping',
+      '1 egg yolk + 1 tbsp milk (egg wash)'
+    ],
+    instructions:[
+      'Boil chicken until cooked. Shred the meat and reserve the broth.',
+      'Melt butter in a pan. Sauté onion and garlic until fragrant.',
+      'Add flour and stir continuously to form a roux. Cook for 2 minutes.',
+      'Gradually pour in the reserved broth while stirring to avoid lumps. Add milk or cream.',
+      'Bring to a gentle boil, stirring, until the sauce is thick and creamy.',
+      'Add shredded chicken, vegetables, mushrooms, and hotdogs. Season with salt and pepper.',
+      'Stir in grated cheese. Pour the filling into a greased baking dish.',
+      'Cover with pie crust or puff pastry, seal edges, and poke holes on top. Brush with egg wash.',
+      'Bake at 190°C (375°F) for 25–30 minutes until crust is golden. Serve warm.'
+    ],
+    tip:'Store-bought puff pastry works perfectly as a quick alternative to homemade pie crust and gives a beautiful flaky top. Chicken Pastel is a festive dish often served at fiestas and celebrations — the creamy filling and buttery crust make it genuinely special.'
+  },
+  {
+    id:15, name:'Pork Embutido', category:'Poultry & Meat',
+    prep:'30 mins', cook:'50 mins', serves:'8–10',
+    ingredients:[
+      '1 kg ground pork',
+      '½ cup pickle relish',
+      '½ cup raisins',
+      '3 hard-boiled eggs, sliced',
+      '2 raw eggs, beaten',
+      '½ cup grated cheese',
+      '1 cup breadcrumbs',
+      '2 Vienna sausages or hotdogs, left whole',
+      '½ cup red bell pepper, finely chopped',
+      '½ cup carrots, grated',
+      '¼ cup soy sauce',
+      'Salt and pepper to taste'
+    ],
+    instructions:[
+      'In a large bowl, combine ground pork, pickle relish, raisins, beaten eggs, cheese, breadcrumbs, bell pepper, carrots, soy sauce, salt, and pepper. Mix until just combined.',
+      'Lay out a large sheet of aluminum foil. Place half the meat mixture in a log shape on the foil.',
+      'Press a row of hard-boiled egg slices and 1 whole sausage in the center of the meat.',
+      'Roll the meat around the filling and wrap tightly in foil, twisting the ends to seal.',
+      'Repeat with remaining mixture. Steam both rolls for 45–50 minutes.',
+      'Cool before unwrapping and slicing into rounds.',
+      'Optional: pan-fry or oven-bake slices after steaming for a browned crust.'
+    ],
+    tip:'Pork Embutido keeps well in the refrigerator for up to 5 days. Slice and pan-fry leftover rounds for a delicious next-day meal. It also freezes well — steam or bake from frozen when needed.'
+  },
+  {
+    id:16, name:'Spanish Meatballs (Albóndigas)', category:'Poultry & Meat',
+    prep:'20 mins', cook:'35 mins', serves:'6–8',
+    ingredients:[
+      '500 g ground beef',
+      '500 g ground pork',
+      '½ cup breadcrumbs',
+      '2 eggs, beaten',
+      '4 cloves garlic, minced',
+      '1 onion, finely chopped',
+      '¼ cup fresh parsley, chopped',
+      '1 tsp sweet paprika',
+      'Salt and pepper to taste',
+      '2 tbsp olive oil for browning',
+      'Sauce: 2 cups tomato sauce, 1 cup beef broth, ½ cup red wine',
+      'Sauce: 1 onion, 4 garlic cloves, 2 tbsp olive oil, 2 bay leaves, 1 tsp paprika'
+    ],
+    instructions:[
+      'Combine ground meats, breadcrumbs, eggs, garlic, onion, parsley, paprika, salt, and pepper. Mix until just combined — do not over-mix.',
+      'Roll into golf ball-sized balls. Brown in olive oil in batches until all sides are golden. Set aside.',
+      'In the same pan, sauté onion and garlic for the sauce until translucent.',
+      'Add tomato sauce, beef broth, red wine, bay leaves, and paprika. Bring to a simmer.',
+      'Return meatballs to the sauce. Cover and simmer on low for 20–25 minutes until cooked through.',
+      'Adjust seasoning with salt and pepper.',
+      'Serve with crusty bread, over pasta, or with steamed rice.'
+    ],
+    tip:'The key to tender meatballs is to not over-mix the meat mixture — mix just until the ingredients are combined. Browning them first in batches locks in juices and adds deep flavor to the sauce. Do not crowd the pan when browning or they will steam instead of sear.'
+  },
+
+  // ---- SEAFOOD ----
+  {
+    id:17, name:'Spanish Sardines', category:'Seafood',
+    prep:'30 mins', cook:'35 mins', serves:'6–8',
+    ingredients:[
+      '1 kg sardines (remove head, guts, and tail)',
+      '1 medium carrot, sliced into circles',
+      '5 dried bay leaves',
+      '12 garlic cloves, whole and skinned',
+      '1 tbsp whole black peppercorns',
+      '2 red bell peppers, sliced',
+      '5 red chili peppers',
+      '12 slices pickles',
+      '10 green olives',
+      '1 cup olive oil',
+      '½ cup vegetable oil',
+      '1 cup water',
+      '1 tbsp salt, 1 tbsp vinegar',
+      'Brine: 5 cups water + ¼ cup salt (for soaking)'
+    ],
+    instructions:[
+      'Clean sardines and soak in brine solution (5 cups water + ¼ cup salt) for 30 minutes. Rinse well.',
+      'Arrange sardines in the pressure cooker in layers, adding carrots, garlic, bay leaves, peppers, olives, pickles, and chilies between each layer.',
+      'Mix olive oil, vegetable oil, vinegar, salt, and 1 cup water. Pour over the fish.',
+      'Scatter whole peppercorns on top.',
+      'Seal the pressure cooker and cook for 30 minutes after the pressure weight starts sizzling.',
+      'Turn off heat and allow to depressurize naturally before opening.',
+      'Cool completely before serving or storing in jars.'
+    ],
+    tip:'Start counting 30 minutes only after the pressure cooker weight sizzles — not from when you first turn on the heat. If using a regular pot (no pressure cooker), simmer covered on very low heat for 1½ to 2 hours until the fish bones are completely soft.'
+  },
+  {
+    id:18, name:'Gambas Al Ajillo', category:'Seafood',
+    prep:'15 mins', cook:'5 mins', serves:'2–4',
+    ingredients:[
+      '½ kg shrimps, shelled and deveined',
+      '6 cloves garlic, crushed and finely chopped',
+      '¼ cup olive oil',
+      'Fresh parsley, chopped',
+      '1 red bell pepper, sliced',
+      'Salt and cayenne pepper to taste'
+    ],
+    instructions:[
+      'Heat olive oil in a wide pan over medium-high heat until shimmering.',
+      'Add crushed garlic and cook for 30 seconds until golden and fragrant — watch carefully, it burns fast.',
+      'Add shrimps and red bell pepper slices. Season with salt and a good pinch of cayenne pepper.',
+      'Toss and stir until shrimps turn pink and are just cooked through, about 3–4 minutes.',
+      'Do not overcook — shrimps become rubbery quickly.',
+      'Garnish generously with chopped parsley.',
+      'Serve immediately as a tapa with crusty bread to soak up the garlic oil.'
+    ],
+    tip:'The success of Gambas Al Ajillo is speed — the whole dish takes under 5 minutes. Have everything prepped and ready before the oil hits the pan. The garlic-infused olive oil is the star; don\'t skip the crusty bread for soaking it up.'
+  },
+  {
+    id:19, name:'Sinigang na Hipon', category:'Seafood',
+    prep:'30 mins', cook:'25 mins', serves:'6–8',
+    ingredients:[
+      '500 g pre-washed prawns',
+      '1 large white onion, chopped',
+      'Thumb-sized ginger, thinly sliced',
+      '1 large tomato, chopped',
+      '1 medium radish, sliced diagonally',
+      '5 snake beans (sitaw), cut into 3-inch lengths',
+      '1 cup water spinach (kangkong)',
+      '500 ml shrimp broth or water',
+      '1 small pack tamarind powder',
+      'Fish sauce and ground pepper to taste'
+    ],
+    instructions:[
+      'In a large pot, combine broth or water with onions, tomatoes, and ginger. Bring to a boil.',
+      'Add radish and snake beans and cook until almost tender.',
+      'Add tamarind powder and stir to dissolve. Season with fish sauce and ground pepper.',
+      'Add the prawns and water spinach (kangkong) and cook for 5 more minutes or until the prawns are pink and cooked.',
+      'Taste and adjust sourness and saltiness.',
+      'Serve hot with steamed rice and fish sauce on the side.'
+    ],
+    tip:'For a richer, more layered broth, mash the onions, tomato, and ginger with a little water first before boiling. Do not overcook the prawns — they turn rubbery quickly. Add them last and watch the pot.'
+  },
+  {
+    id:20, name:'Adobong Pusit sa Sotanghon', category:'Seafood',
+    prep:'30 mins', cook:'30 mins', serves:'6–8',
+    ingredients:[
+      '¼ cup vegetable oil',
+      '1 large onion, chopped',
+      '1 large tomato, chopped',
+      '1 head garlic, finely chopped',
+      '1 red bell pepper, sliced',
+      '¼ cup scallions, chopped',
+      '2 thumbs-sized ginger, julienned',
+      '1 kg baby squid, cleaned and deboned (save the ink)',
+      '1 tsp cracked black pepper',
+      '¼ cup fish sauce',
+      '2 tbsp soy sauce',
+      '¼ cup cane vinegar',
+      '200 g vermicelli (sotanghon) glass noodles, soaked in water',
+      '1 liter broth'
+    ],
+    instructions:[
+      'Heat oil and sauté onion, garlic, ginger, and tomato until softened and fragrant.',
+      'Add squid and cook, stirring, until it releases its ink and changes color.',
+      'Add soy sauce, vinegar, and fish sauce. Simmer for 5 minutes without stirring to let the vinegar mellow.',
+      'Add bell pepper, scallions, and broth. Bring to a boil.',
+      'Add soaked glass noodles and stir to absorb the sauce.',
+      'Season with cracked black pepper.',
+      'Cook until noodles are tender and have absorbed most of the liquid. Serve hot.'
+    ],
+    tip:'The dramatic black color of this dish comes from the squid\'s natural ink — do not be alarmed! The ink adds a rich, briny depth of flavor that is unmistakably oceanic. Use fresh baby squid for the best result; the ink sacs should be visibly full.'
+  },
+  {
+    id:21, name:'Calamares Fritos', category:'Seafood',
+    prep:'20 mins', cook:'15 mins', serves:'4–6',
+    ingredients:[
+      '1 kg baby squid, pre-washed, dredged in ½ cup cake flour',
+      '1 cup cake flour',
+      '¼ cup cornstarch',
+      '1 tsp salt',
+      '½ tsp ground pepper',
+      '1 tbsp mayonnaise',
+      '1 cup very cold light beer or soda',
+      '½ cup ice-cold water',
+      '5 ice cubes',
+      '500 ml vegetable oil',
+      '4 lemon wedges'
+    ],
+    instructions:[
+      'Heat oil in a deep-frying pot to 180°C (356°F).',
+      'Sift together cake flour, cornstarch, salt, and ground pepper into a bowl.',
+      'In a separate bowl, whisk water and mayonnaise until blended, then add the beer or soda.',
+      'Add the flour mixture to the liquid, a third at a time — do not over-mix; small lumps are fine.',
+      'Add ice cubes to the batter to keep it cold.',
+      'Dredge squid in extra cake flour first, then dip into the batter one by one.',
+      'Place battered squid into the hot oil. Do not crowd the pot. Fry until light golden brown, about 2–3 minutes.',
+      'Drain on paper towels. Serve hot on a platter with lemon wedges and garnish with parsley.'
+    ],
+    tip:'Can be enjoyed with just a squeeze of lemon, or a light dipping sauce of soy sauce with finely chopped garlic and chilies. The key to crispy calamares is ice-cold batter — keep the ice cubes in throughout frying. Never crowd the pot or the temperature drops and the coating turns soggy.'
+  },
+
+  // ---- RICE & PAELLA ----
+  {
+    id:22, name:'Arroz Valenciana', category:'Rice & Paella',
+    prep:'30 mins', cook:'30 mins', serves:'6–8',
+    ingredients:[
+      '4 cups glutinous rice, cooked in 5 cups chicken broth seasoned with 1 tbsp salt',
+      '1 cup white onions, chopped',
+      '1 head garlic, chopped',
+      '2 cups chicken thigh fillet, cubed',
+      '1 cup chicken liver',
+      '1 cup chicken gizzard',
+      '½ cup chorizo de bilbao, sliced',
+      '1 red bell pepper, sliced',
+      '1 green bell pepper, sliced',
+      '1 cup raisins',
+      '1 large carrot, cubed',
+      '¼ cup patis (fish sauce)',
+      '5 eggs, boiled for 3 minutes in boiling water',
+      'Salt and pepper to taste',
+      '¼ cup vegetable oil'
+    ],
+    instructions:[
+      'Cook glutinous rice in seasoned chicken broth until fully cooked and fluffy. Set aside.',
+      'Heat oil in a large wok or pan. Sauté garlic and onion until fragrant.',
+      'Add chicken thigh, liver, gizzard, and chorizo de bilbao. Cook until browned.',
+      'Add carrots, raisins, and bell peppers. Season with fish sauce, salt, and pepper.',
+      'Add the cooked glutinous rice and fold gently until everything is well combined and heated through.',
+      'Transfer to a large serving platter.',
+      'Arrange sliced boiled eggs on top and serve family-style.'
+    ],
+    tip:'You can replace water with coconut milk when cooking the glutinous rice for a richer, creamier flavor. Arroz Valenciana is a festive dish — always serve it on a large platter for the whole family to share.'
+  },
+  {
+    id:23, name:'Spanish Garlic Chorizo Rice', category:'Rice & Paella',
+    prep:'10 mins', cook:'15 mins', serves:'6–8',
+    ingredients:[
+      '1 tbsp butter',
+      '1 tbsp oil',
+      '1 head garlic, crushed and diced',
+      '1 red bell pepper, chopped',
+      '1 whole chorizo de bilbao, diced',
+      '5 cups pre-cooked rice',
+      '1 tbsp salt and a dash of ground pepper',
+      '1 tbsp annatto powder (optional, for color)',
+      '5 sprigs parsley, coarsely chopped'
+    ],
+    instructions:[
+      'Heat butter and oil together in a large wok or pan over medium heat.',
+      'Sauté garlic until lightly golden and fragrant.',
+      'Add chorizo de bilbao and bell pepper. Cook for 3 minutes until chorizo renders its fat.',
+      'Add the pre-cooked rice and toss well to coat in the garlic-chorizo oil.',
+      'Add annatto powder if using, and toss until the rice is evenly colored.',
+      'Season with salt and pepper.',
+      'Fold in fresh parsley and serve on a large platter.'
+    ],
+    tip:'Serve this Spanish Garlic Chorizo Rice on a large platter and eat family-style. It pairs perfectly with viands like Menudo, Afritada, and Caldereta — all the classic tomato-based dishes that share its Spanish DNA.'
+  },
+  {
+    id:24, name:'Sinangag (Garlic Fried Rice)', category:'Rice & Paella',
+    prep:'5 mins', cook:'15 mins', serves:'6–8',
+    ingredients:[
+      '¼ cup vegetable oil',
+      '6 cloves garlic, crushed and finely chopped',
+      '2 whole eggs, beaten (optional)',
+      '5 cups pre-cooked rice',
+      'Salt and ground white pepper to taste'
+    ],
+    instructions:[
+      'Heat oil in a wok or large heavy-bottomed pan over medium-high heat.',
+      'Sauté garlic until light golden brown. Be careful not to burn it.',
+      'Add the pre-cooked rice and mix well, breaking up any clumps.',
+      'Pour in the beaten egg (if using) and mix well throughout the rice.',
+      'Cook the fried rice for 5 more minutes, tossing frequently.',
+      'Season with salt and ground white pepper to taste.',
+      'Serve hot as a base for any viand or alongside eggs and protein for breakfast.'
+    ],
+    tip:'Native garlic (bawang) which is smaller than regular garlic is preferred — it is more fragrant and flavorful. You can even cook it with the skin on for deeper garlic flavor, just pick out the skins before serving. Use day-old refrigerated rice for the best, non-clumpy fried rice.'
+  },
+  {
+    id:25, name:'Bagoong Rice', category:'Rice & Paella',
+    prep:'5 mins', cook:'15 mins', serves:'6–8',
+    ingredients:[
+      '¼ cup vegetable oil',
+      '6 cloves garlic, crushed and finely chopped',
+      '4 tbsp cooked bagoong (shrimp paste)',
+      '5 cups pre-cooked rice',
+      '2 tbsp chopped scallions'
+    ],
+    instructions:[
+      'Heat oil in a wok or large heavy-bottomed pan.',
+      'Sauté garlic until light golden brown.',
+      'Add bagoong (shrimp paste) and stir into the garlic oil for 1 minute.',
+      'Add the pre-cooked rice and toss well until evenly coated.',
+      'Cook for 5 more minutes, stirring frequently.',
+      'Shrimp paste is already salty — no need to add extra seasoning.',
+      'Serve hot topped with chopped scallions, ideally alongside Kare-Kare.'
+    ],
+    tip:'Bagoong or shrimp paste is readily available in every Filipino grocery store; some varieties are even sweet and spicy. Bagoong rice is the classic partner for Kare-Kare — the saltiness of the bagoong perfectly balances the rich peanut sauce of the stew.'
+  },
+  {
+    id:26, name:'Chicken Paella', category:'Rice & Paella',
+    prep:'20 mins', cook:'45 mins', serves:'6–8',
+    ingredients:[
+      '½ cup extra virgin olive oil',
+      '1 kg chicken pieces',
+      '1 tsp salt',
+      '440 g Bomba rice or Arborio / risotto rice',
+      '2 liters chicken broth, hot',
+      '1 tbsp saffron, bloomed in ¼ cup cold water',
+      '1 large onion, chopped',
+      '6 cloves garlic, minced',
+      '1 cup tomatoes, chopped',
+      '2 rosemary sprigs',
+      '1 tsp sweet paprika',
+      '2 large red bell peppers, sliced',
+      '1 large green bell pepper, sliced',
+      '2 cups flat green beans or chicharo (snow peas)',
+      '1 cup flat white beans, lima beans, or patani',
+      'Salt and ground pepper to taste'
+    ],
+    instructions:[
+      'Heat olive oil in a paella pan and sprinkle with salt across the surface.',
+      'Place chicken pieces in the center of the pan and sear until golden brown.',
+      'Move all the chicken to the sides of the pan.',
+      'Place green beans, onions, and tomatoes in the center. Cook tomatoes until they release their juices.',
+      'Add sweet paprika and saffron (with its liquid) and mix throughout.',
+      'Add white beans and garlic. Stir briefly.',
+      'Pour in the hot broth to cover all ingredients. Cook for 20 minutes.',
+      'Spread rice evenly around the pan. Place rosemary sprigs on top. Boil for 15 minutes.',
+      'Season with salt and pepper while boiling.',
+      'When rice is almost done, cover with foil. Remove from heat and let rest covered for 5 minutes.',
+      'The bottom should have a crispy crust (socarrat). Serve directly from the pan.'
+    ],
+    tip:'The paella pan is flat and wide to ensure all ingredients cook evenly at the same heat. A flat non-stick pan or heavy-bottomed pan works too. Never stir the rice once it is in the broth — resist the urge! The socarrat (crispy rice at the bottom) is the most prized part of a great paella.'
+  },
+  {
+    id:27, name:'Paella Negra', category:'Rice & Paella',
+    prep:'20 mins', cook:'45 mins', serves:'6–8',
+    ingredients:[
+      '500 g squid, cleaned and sliced into rings (save ink sacs)',
+      '500 g shrimp, shelled and deveined',
+      '4 cups Bomba or short-grain rice',
+      '1.5 liters seafood or fish broth, hot',
+      '4 sachets squid ink (plus ink from the squid)',
+      '1 cup white wine',
+      '1 large onion, chopped',
+      '6 cloves garlic, minced',
+      '2 tomatoes, diced',
+      '½ cup olive oil',
+      '1 tsp sweet paprika',
+      'Salt to taste',
+      'Lemon wedges and aioli to serve'
+    ],
+    instructions:[
+      'Heat olive oil in a paella pan. Sauté onion and garlic until soft.',
+      'Add diced tomatoes and cook until they break down into a paste.',
+      'Add squid and cook for 5 minutes until it releases its juices.',
+      'Stir in squid ink (from sacs and sachets), paprika, and white wine. Simmer for 3 minutes until the ink is evenly distributed.',
+      'Add rice and stir to coat with the black ink mixture.',
+      'Pour in the hot broth, ensuring rice is evenly spread. Do not stir after this.',
+      'Place shrimp on top and cook uncovered for 18–20 minutes until rice is done and the bottom is crispy (socarrat).',
+      'Remove from heat, cover with foil and rest for 5 minutes.',
+      'Serve directly from the pan with lemon wedges and aioli.'
+    ],
+    tip:'The dramatic jet-black color from squid ink is both beautiful and deeply flavorful — oceanic, briny, and rich. Use the full amount of ink for an authentic Paella Negra. Aioli (garlic mayonnaise) is the traditional accompaniment and cuts beautifully through the richness of the ink.'
+  },
+  {
+    id:28, name:'Arrozcaldo', category:'Rice & Paella',
+    prep:'30 mins', cook:'35 mins', serves:'6–8',
+    ingredients:[
+      '¼ cup vegetable oil',
+      '1 large onion, chopped',
+      '1 head garlic, finely chopped',
+      '2 thumbs-sized ginger, sliced into sticks',
+      '½ kg chicken pieces, bite-sized',
+      '2 cups glutinous rice grains, washed',
+      '½ cup fish sauce',
+      '1 tsp ground pepper',
+      '2 liters chicken broth (or 2 liters water with 2 chicken bouillon cubes)',
+      '¼ cup finely chopped scallions'
+    ],
+    instructions:[
+      'Heat oil in a heavy-bottomed pot. Sauté onion, garlic, and ginger until very fragrant.',
+      'Add chicken pieces and cook until lightly browned.',
+      'Add the washed glutinous rice and stir to coat in the aromatics and oil.',
+      'Pour in the chicken broth and bring to a boil.',
+      'Reduce heat to low and simmer, stirring occasionally, for 25–30 minutes until the rice breaks down into a thick, creamy porridge.',
+      'Season with fish sauce and pepper. Add more broth if the porridge becomes too thick.',
+      'Serve hot topped with scallions, fried garlic, and a squeeze of calamansi.'
+    ],
+    tip:'Arrozcaldo is the ultimate Filipino comfort food and the go-to meal during illness or cold, rainy days. Stirring occasionally as it cooks helps the rice break down properly. Top with crispy fried garlic, a soft-boiled egg, and a drizzle of toasted sesame oil for a restaurant-worthy bowl.'
+  },
+
+  // ---- NOODLES & SOUPS ----
+  {
+    id:29, name:'Pancit Molo', category:'Noodles & Soups',
+    prep:'30 mins', cook:'40 mins', serves:'6–8',
+    ingredients:[
+      '1 pack wonton wrappers (about 50 pieces)',
+      'Filling: 300 g ground pork, 200 g shrimp (minced), 4 cloves garlic (minced), ½ onion (finely chopped), salt and pepper',
+      '1 kg chicken pieces',
+      '1 large onion, chopped',
+      '6 cloves garlic, minced',
+      '2 liters chicken broth',
+      '2 tbsp fish sauce',
+      '½ cup spring onions or scallions',
+      'Fried garlic for garnish',
+      'Salt and pepper to taste'
+    ],
+    instructions:[
+      'Make the filling: mix ground pork, minced shrimp, garlic, onion, salt, and pepper in a bowl.',
+      'Place 1 tsp of filling in the center of each wonton wrapper. Fold in half or into triangles and seal edges with a little water.',
+      'In a large pot, sauté onion and garlic in oil until fragrant. Add chicken pieces and brown lightly.',
+      'Pour in chicken broth and bring to a boil. Simmer for 20 minutes until chicken is cooked.',
+      'Season with fish sauce, salt, and pepper.',
+      'Drop the filled wontons into the simmering broth. Cook for 8–10 minutes until wrappers are tender and filling is cooked.',
+      'Ladle into bowls and top generously with spring onions and fried garlic.'
+    ],
+    tip:'Pancit Molo is a specialty of the Molo district in Iloilo City and is one of the most beloved soups in the Visayas region. If fresh wonton skins are available, use them — the texture is incomparably better than dried. Pancit Molo is typically served at New Year celebrations for good luck.'
+  },
+  {
+    id:30, name:'Sopas (Macaroni Soup)', category:'Noodles & Soups',
+    prep:'30 mins', cook:'30 mins', serves:'6–8',
+    ingredients:[
+      '¼ cup vegetable oil',
+      '1 large onion, chopped',
+      '1 head garlic, finely chopped',
+      '1 cup chicken strips or slices',
+      '¼ cup chicken gizzard',
+      '¼ cup chicken liver',
+      '2 pieces jumbo hotdogs or sausage, sliced',
+      '¼ cup fish sauce',
+      'Salt and pepper to taste',
+      '250 g elbow macaroni',
+      '1 liter chicken broth',
+      '1 medium carrot, cubed',
+      '1 large potato, cubed',
+      '1 cup cabbage, thinly sliced',
+      '1 cup evaporated milk',
+      '2 tbsp butter'
+    ],
+    instructions:[
+      'Cook macaroni according to package directions until al dente. Drain and set aside.',
+      'Heat oil in a large pot. Sauté onion and garlic until fragrant.',
+      'Add chicken strips, gizzard, and liver. Cook until browned.',
+      'Season with fish sauce, salt, and pepper.',
+      'Add hotdogs or sausage, then pour in chicken broth. Bring to a boil.',
+      'Add carrots and potato. Simmer until vegetables are tender, about 12 minutes.',
+      'Add cooked macaroni and pour in evaporated milk. Stir to combine.',
+      'Add cabbage and butter. Cook for 2 more minutes. Serve hot.'
+    ],
+    tip:'Sopas is the Filipino version of macaroni soup and is a beloved rainy-day and merienda dish, especially for children. Using evaporated milk gives the broth a rich, creamy quality that is distinctly Filipino. Add more milk for a creamier soup, or more broth for a lighter version.'
+  },
+
+  // ---- TAPAS & SIDES ----
+  {
+    id:31, name:'Spanish Chicken Croquettes', category:'Tapas & Sides',
+    prep:'30 mins', cook:'35 mins', serves:'6–8',
+    ingredients:[
+      '2½ cups cooked leftover chicken, shredded',
+      '½ cup butter',
+      '1 cup milk',
+      '1 cup cream',
+      '1 medium white onion, finely diced',
+      '½ cup all-purpose flour',
+      'Salt and white pepper to taste',
+      '1 tsp nutmeg',
+      '½ cup seasoned all-purpose flour (for dredging)',
+      '1 egg + 2 tbsp water, beaten (egg wash)',
+      'Finely ground breadcrumbs (for coating)',
+      'Oil for deep frying'
+    ],
+    instructions:[
+      'In a saucepan, melt butter over medium heat. Add onion and cook until soft and translucent, about 5 minutes.',
+      'Add flour and stir constantly to form a smooth roux. Cook for 2 minutes.',
+      'Gradually add milk and cream, stirring constantly, until a thick, smooth béchamel forms.',
+      'Season generously with salt, white pepper, and nutmeg. Fold in shredded chicken and mix well.',
+      'Spread the mixture into a shallow dish. Cover with plastic wrap pressed to the surface. Refrigerate for at least 2 hours until very firm.',
+      'Shape chilled mixture into small logs or ovals. Coat each: first in seasoned flour, then in egg wash, then in breadcrumbs.',
+      'Deep fry in hot oil at 180°C in batches until golden brown all over, about 3–4 minutes.',
+      'Drain on paper towels and serve immediately with aioli or a squeeze of lemon.'
+    ],
+    tip:'The croquette filling must be very cold and firm before shaping — do not rush this step. If the mixture is too warm it will fall apart in the oil. Croquettes can be breaded ahead of time and refrigerated or frozen, then fried to order. Perfect as a tapa starter or party appetizer.'
+  },
+  {
+    id:32, name:'Spanish Tortilla (Tapas)', category:'Tapas & Sides',
+    prep:'5 mins', cook:'25 mins', serves:'6–8',
+    ingredients:[
+      '6 whole eggs, beaten',
+      '¼ cup vegetable oil',
+      '1 large potato, thinly sliced',
+      '1 large white onion, thinly sliced',
+      'Salt and pepper to taste'
+    ],
+    instructions:[
+      'Heat oil in an oven-safe pan. Add onion and cook until translucent. Set aside on a plate.',
+      'In the same pan, fry the sliced potatoes until almost cooked but not yet crispy. Set aside.',
+      'Allow both the onion and potatoes to cool slightly.',
+      'Beat the eggs well in a large bowl. Add cooled potatoes and onion. Season with salt and pepper. Let rest for 5 minutes.',
+      'Heat a small amount of oil in the pan over medium heat. Pour in the egg-potato mixture and spread evenly.',
+      'Cook for 5 minutes until the bottom is set and golden. Slide the tortilla onto a large flat plate.',
+      'Flip the plate back into the pan to cook the other side for 3 minutes.',
+      'Slide onto a serving plate. Serve hot or at room temperature, cut into wedges.'
+    ],
+    tip:'You can add chorizo de bilbao, bell peppers, or ham to make a heartier tortilla. A Spanish tortilla is not a Mexican tortilla — it is a thick, potato-egg omelette, similar to a frittata. It is meant to be dense and moist in the center, not dry.'
+  },
+  {
+    id:33, name:'Eggplant Three Ways', category:'Tapas & Sides',
+    prep:'30 mins', cook:'30 mins', serves:'6–8',
+    ingredients:[
+      '1 kg long eggplants, grilled over an open flame until charred, then peeled',
+      '1 large white onion, finely chopped',
+      '1 cup chopped tomatoes',
+      '2 tbsp cilantro, finely chopped (optional)',
+      'Salt and pepper to taste',
+      '4 cloves garlic, minced',
+      '¼ cup vegetable oil',
+      '4 eggs, beaten',
+      '¼ cup vinegar',
+      '2 tbsp fish sauce',
+      'Pinch of ground black pepper and salt'
+    ],
+    instructions:[
+      'Grill eggplants over open flame, rotating, until completely charred. Cool, then peel and mash the flesh with a fork.',
+      'TORTA (Omelet): Season mashed eggplant with salt and pepper. Mix with beaten eggs. Fry in hot oil until golden and set on both sides. Serve hot.',
+      'ENSALADA (Salad): Mix mashed eggplant with chopped onion, tomatoes, and cilantro. Dress with vinegar, fish sauce, and pepper. Toss and serve at room temperature.',
+      'DIP: Sauté garlic in oil until golden. Add mashed eggplant, fish sauce, salt, and pepper. Stir and cook for 3 minutes until heated through and creamy. Serve warm with rice or bread.',
+      'Choose one preparation or serve all three together on a sharing platter for a fun appetizer spread.'
+    ],
+    tip:'Charring the eggplant directly over an open flame (gas stove or grill) gives it a smoky depth that oven-roasting cannot replicate. The outer skin must be completely black — that is the point. Let it cool completely before peeling to avoid burning your fingers.'
+  },
+
+  // ---- DESSERTS ----
+  {
+    id:34, name:'Churros con Chocolate', category:'Desserts',
+    prep:'5 mins', cook:'20 mins', serves:'6–8',
+    ingredients:[
+      'Dough: 1 cup water, 2 tbsp butter, 1 cup all-purpose flour, 1 tsp baking powder, pinch of salt, 1 tsp sugar',
+      'Cinnamon Sugar: ¼ cup white sugar, ½ tsp cinnamon powder',
+      'Hot Chocolate Dip: 1 cup milk, 1 cup semi-sweet Belgian chocolate, chopped',
+      'Vegetable oil for deep frying',
+      'Churro presser or piping bag with star tip'
+    ],
+    instructions:[
+      'Bring water and butter to a boil in a saucepan. Add salt and sugar.',
+      'Reduce heat. Add flour and baking powder all at once and stir vigorously until dough forms a smooth ball that pulls away from the sides.',
+      'Cool slightly, then fill a churro presser or piping bag fitted with a star tip.',
+      'Heat oil to 180°C. Pipe 4-inch lengths of dough directly into the hot oil. Fry until golden brown, about 3 minutes, turning once.',
+      'Drain on paper towels immediately. Roll in the cinnamon-sugar mixture while still hot.',
+      'For chocolate dip: heat milk until just simmering. Pour over chopped chocolate in a bowl. Wait 1 minute, then stir until completely smooth.',
+      'Serve churros immediately with the warm chocolate dip.'
+    ],
+    tip:'If you do not have a churro presser, fill a large piping bag fitted with a star tip and press the dough out with your thumb. Or simply drop spoonfuls of dough into the oil for "Churro Bites." Churros are best eaten immediately while still hot and crispy — they do not keep well.'
+  },
+  {
+    id:35, name:'Polvoron', category:'Desserts',
+    prep:'5 mins', cook:'30 mins', serves:'36 pieces',
+    ingredients:[
+      '1 kg all-purpose flour',
+      '500 g powdered milk',
+      '1 cup white sugar',
+      '1½ cups melted butter',
+      '1 cup vegetable oil',
+      '2 cups rice crispies'
+    ],
+    instructions:[
+      'Toast all-purpose flour in a large pan over low to medium heat, stirring continuously, until lightly golden brown. This step is crucial.',
+      'Continue stirring to avoid burning the flour at the bottom.',
+      'Add powdered milk, rice crispies, and sugar all at the same time. Mix thoroughly until well blended.',
+      'Remove the pan from heat.',
+      'Mix melted butter and vegetable oil together and pour into the flour mixture.',
+      'Mix well until everything comes together. Allow to cool to room temperature.',
+      'Press into polvoron molds firmly. Unmold each one and wrap individually in small cellophane sheets.'
+    ],
+    tip:'Refrigerate polvoron for firmer texture and longer storage. They keep well for up to 2 weeks in the refrigerator or 1 month in the freezer. Variations include adding pinipig (toasted puffed rice), peanuts, or ube powder for purple yam flavor.'
+  },
+  {
+    id:36, name:'Mango Crema Catalana', category:'Desserts',
+    prep:'20 mins', cook:'15 mins', serves:'6',
+    ingredients:[
+      '500 ml heavy cream',
+      '250 ml whole milk',
+      '6 egg yolks',
+      '¾ cup white sugar (plus extra for brûlée topping)',
+      '2 tbsp cornstarch',
+      '1 ripe mango, blended into a smooth puree (preferably Carabao mango)',
+      '1 tsp vanilla extract',
+      'Zest of 1 lime or dayap (Philippine lime)'
+    ],
+    instructions:[
+      'Whisk egg yolks, ¾ cup sugar, and cornstarch in a bowl until pale, thick, and ribbony.',
+      'Heat cream and milk in a saucepan over medium heat until just simmering. Do not boil.',
+      'Slowly pour the hot cream into the egg mixture in a thin stream, whisking constantly. This is called tempering.',
+      'Return the mixture to the saucepan over low heat. Stir continuously until the custard thickens enough to coat the back of a spoon.',
+      'Remove from heat. Stir in mango puree, vanilla extract, and lime zest.',
+      'Pour into ramekins and refrigerate for at least 4 hours or until fully set.',
+      'Before serving, sprinkle a thin, even layer of sugar over each ramekin and brûlée with a kitchen torch until the sugar caramelizes into a golden, crackly crust.'
+    ],
+    tip:'Use a very ripe, sweet Carabao mango for the most intense tropical flavor. The mango puree can also be swirled into the custard in a marbled pattern for a beautiful presentation. If you do not have a kitchen torch, place ramekins under the broiler for 2–3 minutes — watch carefully.'
+  },
+  {
+    id:37, name:'Leche Flan', category:'Desserts',
+    prep:'15 mins', cook:'45 mins', serves:'8–10',
+    ingredients:[
+      '10 egg yolks',
+      '1 cup evaporated milk',
+      '2 cups condensed milk',
+      '¼ cup white sugar (to caramelize on the mold)',
+      '2 tbsp dayap zest or lemon zest'
+    ],
+    instructions:[
+      'Prepare a steamer pot with boiling water.',
+      'Caramelize the sugar directly in the llanera (flan mold) by holding it over low heat until the sugar melts and turns amber. Set aside to cool and harden.',
+      'In a large bowl, combine all egg yolks and add both milks and the citrus zest.',
+      'Mix slowly to break the yolks and blend with the milk — avoid creating too many bubbles.',
+      'Strain the mixture 2–3 times through a fine sieve for a completely smooth texture.',
+      'Pour the strained mixture slowly into the mold over the cooled caramel. Remove any surface bubbles.',
+      'Cover the top tightly with foil. Place on the steamer.',
+      'Set heat to the lowest possible simmer. Steam for 40–45 minutes.',
+      'To test doneness, insert a toothpick in the center — it should come out clean.',
+      'Cool completely, then refrigerate before unmolding. Invert onto a plate to serve.'
+    ],
+    tip:'The key to a silky, smooth leche flan is patience: mix gently without creating bubbles, strain multiple times, and steam at the absolute lowest heat. High heat causes the proteins to cook too fast, creating holes (called "mata") in the flan. A perfect leche flan should be mirror-smooth.'
+  },
+
+  // ---- BAKED GOODS ----
+  {
+    id:38, name:'Baked Chicken Empanada', category:'Baked Goods',
+    prep:'30 mins', cook:'55 mins', serves:'12 pieces',
+    ingredients:[
+      'Dough: 3 cups all-purpose flour, 1 tbsp sugar, 1 tsp fine salt, 1 tbsp baking powder, 1 tsp baking soda, 1 cup cold butter (cubed), 1 whole egg, ½ cup ice water',
+      'Egg wash: 1 beaten egg yolk + 1 tbsp milk',
+      'Filling: chicken pieces (boiled and shredded), 1 onion, 4 garlic cloves, 1 cup chicken broth, 2 potatoes (diced), 2 carrots (diced), 2 bell peppers (diced), 1 cup green peas, ½ cup heavy cream',
+      'Salt and pepper to taste'
+    ],
+    instructions:[
+      'Dough: Mix flour, baking powder, baking soda, salt, and sugar in a large bowl.',
+      'Add cold cubed butter and use a fork or pastry cutter to blend until the mixture resembles large coarse crumbs.',
+      'Add egg and mix lightly. Add ice water gradually, just until dough comes together into a ball. Do not overwork.',
+      'Wrap dough in cling film and rest in the refrigerator for 30 minutes.',
+      'Filling: Sauté onion and garlic in oil. Add chicken and broth, bring to boil. Add potatoes, carrots, and bell peppers. Cook until tender. Add green peas and heavy cream. Season. Cool completely.',
+      'Preheat oven to 205°C (400°F).',
+      'Roll out dough and divide into 12 portions. Flatten each into a rectangle.',
+      'Place 2–3 tablespoons of filling on the upper half. Fold the lower half over and seal the edges by pressing firmly. Trim rough edges with a pizza cutter, then press with a fork to fully seal.',
+      'Poke the top of each empanada with a fork. Place on a parchment-lined baking sheet. Brush with egg wash.',
+      'Bake for 25 minutes until golden. Serve warm.'
+    ],
+    tip:'Cold butter and ice water are non-negotiable for a flaky, tender crust — warm butter makes a tough, dense dough. The empanadas do not need to be placed far apart on the baking sheet as they do not expand much — one or two inches apart is fine. Filling must be completely cooled before filling or the steam will make the dough soggy.'
+  }
+];
+
+// ===== CATEGORY CONFIG =====
+const CATEGORIES = ['All', 'Poultry & Meat', 'Seafood', 'Rice & Paella', 'Noodles & Soups', 'Tapas & Sides', 'Desserts', 'Baked Goods'];
+
+// ===== STATE =====
+let activeCat = 'All';
+let searchQuery = '';
+
+// ===== BUILD CATEGORY FILTER =====
+const catFilter = document.getElementById('catFilter');
+CATEGORIES.forEach(cat => {
+  const btn = document.createElement('button');
+  btn.className = 'cat-btn' + (cat === 'All' ? ' active' : '');
+  btn.textContent = cat;
+  btn.setAttribute('data-cat', cat);
+  btn.addEventListener('click', () => {
+    activeCat = cat;
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderGrid();
+  });
+  catFilter.appendChild(btn);
+});
+
+// ===== RENDER GRID =====
+function renderGrid() {
+  const grid = document.getElementById('recipeGrid');
+  const noRes = document.getElementById('noResults');
+  const q = searchQuery.toLowerCase().trim();
+  const filtered = RECIPES.filter(r => {
+    const matchCat = activeCat === 'All' || r.category === activeCat;
+    const matchSearch = !q || r.name.toLowerCase().includes(q) || r.category.toLowerCase().includes(q) ||
+      r.ingredients.some(i => i.toLowerCase().includes(q));
+    return matchCat && matchSearch;
+  });
+
+  grid.innerHTML = '';
+  if (filtered.length === 0) {
+    noRes.style.display = 'block';
+    return;
+  }
+  noRes.style.display = 'none';
+
+  filtered.forEach(r => {
+    const color = CAT_COLORS[r.category] || '#8B1A1A';
+    const card = document.createElement('div');
+    card.className = 'recipe-card';
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', 'View recipe for ' + r.name);
+    card.innerHTML = `
+      <div class="card-stripe" style="background:${color}"></div>
+      <div class="card-body">
+        <p class="card-cat" style="color:${color}">${r.category}</p>
+        <h3 class="card-name">${r.name}</h3>
+        <div class="card-meta">
+          <span>Prep: ${r.prep}</span>
+          <span>Cook: ${r.cook}</span>
+          <span>Serves ${r.serves}</span>
+        </div>
+        <button class="card-btn" data-id="${r.id}">View Recipe</button>
+      </div>`;
+    card.querySelector('.card-btn').addEventListener('click', e => { e.stopPropagation(); openModal(r.id); });
+    card.addEventListener('click', () => openModal(r.id));
+    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(r.id); } });
+    grid.appendChild(card);
+  });
+}
+
+// ===== SEARCH =====
+document.getElementById('searchInput').addEventListener('input', e => {
+  searchQuery = e.target.value;
+  renderGrid();
+});
+
+// ===== MODAL =====
+function openModal(id) {
+  const r = RECIPES.find(x => x.id === id);
+  if (!r) return;
+  const color = CAT_COLORS[r.category] || '#8B1A1A';
+  document.getElementById('mCat').textContent = r.category;
+  document.getElementById('mCat').style.color = color;
+  document.getElementById('modalTitle').textContent = r.name;
+  document.getElementById('mMeta').innerHTML = `
+    <div class="modal-meta-item"><span class="modal-meta-label">Prep Time</span>${r.prep}</div>
+    <div class="modal-meta-item"><span class="modal-meta-label">Cook Time</span>${r.cook}</div>
+    <div class="modal-meta-item"><span class="modal-meta-label">Servings</span>${r.serves}</div>`;
+  const ingList = document.getElementById('mIngredients');
+  ingList.innerHTML = r.ingredients.map(i => `<li>${i}</li>`).join('');
+  const insList = document.getElementById('mInstructions');
+  insList.innerHTML = r.instructions.map(s => `<li>${s}</li>`).join('');
+  const tipEl = document.getElementById('mTip');
+  const tipText = document.getElementById('mTipText');
+  if (r.tip) {
+    tipText.textContent = r.tip;
+    tipEl.style.display = 'block';
+  } else {
+    tipEl.style.display = 'none';
+  }
+  document.getElementById('modalCard').scrollTop = 0;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('modalOverlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ===== NAV SCROLL =====
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// ===== SCROLL REVEAL =====
+(function() {
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const items = document.querySelectorAll('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) {
+    items.forEach(el => el.classList.add('in'));
+    return;
+  }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  items.forEach(el => io.observe(el));
+})();
+
+// ===== INIT =====
+renderGrid();
+</script>
+</body>
+</html>
