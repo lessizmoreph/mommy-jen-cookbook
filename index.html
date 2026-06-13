@@ -167,6 +167,9 @@ footer{background:var(--bg);padding:64px 24px;text-align:center;border-top:1px s
 .footer-rule{width:60px;height:1px;background:rgba(201,146,42,.35);margin:0 auto 28px}
 .footer-credit{font-size:13px;color:var(--cream-d);opacity:.55}
 .footer-credit a{color:var(--gold);opacity:1}
+.footer-agency{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:16px}
+.footer-agency-logo{width:44px;height:44px;border-radius:8px;object-fit:contain;background:#fff;padding:3px;flex-shrink:0}
+.footer-agency-name{font-size:13px;color:var(--cream-d);font-weight:600;letter-spacing:.04em}
 
 /* ===== REDUCED MOTION ===== */
 @media(prefers-reduced-motion:reduce){
@@ -284,7 +287,10 @@ footer{background:var(--bg);padding:64px 24px;text-align:center;border-top:1px s
   <p class="footer-logo">Flavors of Heritage</p>
   <p class="footer-sub">Spanish-Filipino Cuisine &mdash; by Jeannie Rebadulla</p>
   <div class="footer-rule"></div>
-  <p class="footer-credit">Designed &amp; built by <a href="#">Less Is More Personalized Designs</a> &middot; Philippines &middot; 2026</p>
+  <div class="footer-agency">
+    <img src="assets/pressed-down-logo.jpg" alt="Pressed Down Digital" class="footer-agency-logo">
+    <span class="footer-agency-name">Designed &amp; built by <strong>Pressed Down Digital</strong> &middot; Philippines &middot; 2026</span>
+  </div>
 </footer>
 
 <script>
