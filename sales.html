@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flavors of Heritage — Digital Cookbook by Jeannie Rebadulla</title>
+<meta name="description" content="38 classic Spanish-Filipino recipes by Jeannie Rebadulla. A digital cookbook celebrating the rich culinary heritage of the Philippines. Get instant access today.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== TOKENS ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080402;
+  --surface:#140805;
+  --accent:#8B1A1A;
+  --accent-h:#a32020;
+  --gold:#C9922A;
+  --gold-l:#E8B84B;
+  --cream:#F5E8D0;
+  --cream-d:#C4A882;
+  --light-bg:#F8F1E7;
+  --card:#FFFFFF;
+  --dark:#1A0A03;
+  --muted:#7A5030;
+  --line-d:#1f0e06;
+  --line-l:#E0D0BA;
+  --maxw:1100px;
+  --ff-d:'Cormorant Garamond',Georgia,serif;
+  --ff-b:'Nunito',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:var(--ff-b);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+/* ===== ANIMATIONS ===== */
+.rise{opacity:0;transform:translateY(22px);animation:rise .9s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+.d1{animation-delay:.1s}.d2{animation-delay:.22s}.d3{animation-delay:.36s}
+.d4{animation-delay:.5s}.d5{animation-delay:.64s}.d6{animation-delay:.78s}
+.js .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.js .reveal.in{opacity:1;transform:none}
+@keyframes drift1{from{transform:translate(0,0) scale(1)}to{transform:translate(8vw,6vh) scale(1.15)}}
+@keyframes drift2{from{transform:translate(0,0) scale(1)}to{transform:translate(-6vw,-8vh) scale(1.2)}}
+@keyframes drift3{from{transform:translate(0,0)}to{transform:translate(-4vw,5vh) scale(.9)}}
+
+/* ===== NAV ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,backdrop-filter .4s}
+.nav.scrolled{background:rgba(8,4,2,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,146,42,.15)}
+.nav-brand{font-family:var(--ff-d);font-size:20px;font-weight:600;color:var(--gold);letter-spacing:.02em}
+.nav-cta{display:inline-block;background:var(--accent);color:var(--cream);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:10px 22px;border-radius:2px;transition:background .2s}
+.nav-cta:hover{background:var(--accent-h)}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:110px 24px 80px}
+.hero-orbs{position:absolute;inset:0;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.3}
+.orb-1{width:65vw;height:65vw;max-width:700px;max-height:700px;background:radial-gradient(circle,#8B1A1A,transparent 70%);top:-10%;left:-15%;animation:drift1 20s ease-in-out infinite alternate}
+.orb-2{width:55vw;height:55vw;max-width:620px;max-height:620px;background:radial-gradient(circle,#C9922A,transparent 70%);bottom:-5%;right:-10%;animation:drift2 24s ease-in-out infinite alternate}
+.orb-3{width:35vw;height:35vw;max-width:400px;max-height:400px;background:radial-gradient(circle,#5a0f0f,transparent 70%);top:30%;left:55%;animation:drift3 17s ease-in-out infinite alternate}
+.hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 420px;gap:80px;align-items:center;width:100%;max-width:var(--maxw);margin:0 auto}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr;gap:48px;text-align:center}}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+.hero-title{font-family:var(--ff-d);font-size:clamp(52px,9vw,112px);font-weight:700;line-height:.93;color:var(--cream);margin-bottom:16px}
+.hero-title em{color:var(--gold);font-style:italic;display:block}
+.hero-sub{font-family:var(--ff-d);font-size:clamp(14px,2vw,20px);font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-d);margin-bottom:18px}
+.hero-author{font-family:var(--ff-d);font-size:18px;font-style:italic;color:var(--cream-d);margin-bottom:40px}
+.hero-author strong{color:var(--cream);font-style:normal}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+@media(max-width:900px){.hero-actions{justify-content:center}}
+.btn-primary{display:inline-block;background:var(--accent);color:var(--cream);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:16px 36px;border-radius:2px;transition:background .2s,transform .2s}
+.btn-primary:hover{background:var(--accent-h);transform:translateY(-2px)}
+.btn-ghost{display:inline-block;border:1.5px solid rgba(201,146,42,.5);color:var(--gold);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:15px 32px;border-radius:2px;transition:all .2s}
+.btn-ghost:hover{border-color:var(--gold);background:rgba(201,146,42,.08)}
+.hero-book{position:relative}
+.hero-book-img{width:100%;max-width:380px;border-radius:4px;box-shadow:0 32px 80px rgba(0,0,0,.7),0 0 0 1px rgba(201,146,42,.2);margin:0 auto}
+@media(max-width:900px){.hero-book-img{max-width:260px}}
+.hero-badge{position:absolute;bottom:-16px;right:-12px;background:var(--gold);color:#1a0a03;font-family:var(--ff-d);font-weight:700;font-size:13px;padding:10px 18px;border-radius:2px;letter-spacing:.05em;box-shadow:0 4px 20px rgba(0,0,0,.4)}
+@media(max-width:900px){.hero-badge{bottom:-12px;right:50%;transform:translateX(80px)}}
+
+/* ===== PREVIEW STRIP ===== */
+.preview-strip{background:var(--surface);padding:72px 0;border-top:1px solid var(--line-d);border-bottom:1px solid var(--line-d)}
+.preview-strip h2{font-family:var(--ff-d);font-size:clamp(28px,4vw,44px);font-weight:600;color:var(--cream);text-align:center;margin-bottom:8px}
+.preview-strip p{text-align:center;color:var(--cream-d);font-size:15px;margin-bottom:44px}
+.preview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:700px){.preview-grid{grid-template-columns:repeat(2,1fr)}}
+.preview-card{border-radius:4px;overflow:hidden;aspect-ratio:4/3;position:relative;cursor:pointer}
+.preview-card img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.preview-card:hover img{transform:scale(1.05)}
+.preview-card-label{position:absolute;bottom:0;left:0;right:0;padding:10px 14px;background:linear-gradient(transparent,rgba(8,4,2,.85));font-family:var(--ff-d);font-size:15px;font-weight:600;color:var(--cream)}
+.preview-cta{text-align:center;margin-top:36px}
+.preview-cta p{color:var(--cream-d);font-size:14px;margin-top:14px}
+
+/* ===== WHAT'S INSIDE ===== */
+.inside-section{background:var(--light-bg);padding:clamp(72px,9vw,120px) 0}
+.section-eyebrow{font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;text-align:center}
+.section-title{font-family:var(--ff-d);font-size:clamp(32px,5vw,56px);font-weight:600;color:var(--dark);text-align:center;margin-bottom:12px}
+.section-sub{text-align:center;color:var(--muted);font-size:15px;max-width:52ch;margin:0 auto 52px}
+.inside-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+@media(max-width:760px){.inside-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.inside-grid{grid-template-columns:1fr}}
+.inside-card{background:#fff;border-radius:6px;overflow:hidden;box-shadow:0 2px 14px rgba(26,10,3,.07)}
+.inside-card img{width:100%;height:180px;object-fit:cover}
+.inside-card-body{padding:16px 18px}
+.inside-card-cat{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.inside-card-name{font-family:var(--ff-d);font-size:17px;font-weight:600;color:var(--dark)}
+.inside-more{text-align:center;margin-top:36px;color:var(--muted);font-family:var(--ff-d);font-size:19px;font-style:italic}
+
+/* ===== AUTHOR ===== */
+.author-section{background:var(--bg);padding:clamp(72px,9vw,120px) 0;border-top:1px solid var(--line-d)}
+.author-inner{display:grid;grid-template-columns:200px 1fr;gap:60px;align-items:center}
+@media(max-width:680px){.author-inner{grid-template-columns:1fr;text-align:center}}
+.author-portrait{width:170px;height:170px;border-radius:50%;border:2px solid var(--gold);background:linear-gradient(135deg,#3d1a0a,#140805);display:flex;align-items:center;justify-content:center;margin:0 auto}
+.author-monogram{font-family:var(--ff-d);font-size:64px;font-weight:600;color:var(--gold);opacity:.75;line-height:1}
+.author-eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.author-name{font-family:var(--ff-d);font-size:clamp(30px,4vw,50px);font-weight:600;color:var(--cream);margin-bottom:16px;line-height:1.05}
+.author-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+@media(max-width:680px){.author-tags{justify-content:center}}
+.author-tag{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border:1.5px solid rgba(201,146,42,.4);color:var(--gold);border-radius:2px}
+.author-bio{font-size:15px;line-height:1.8;color:var(--cream-d)}
+.author-quote{font-family:var(--ff-d);font-size:clamp(17px,2.2vw,21px);font-style:italic;color:var(--gold-l);margin-top:24px;line-height:1.5}
+
+/* ===== PRICING ===== */
+.pricing-section{background:var(--surface);padding:clamp(72px,9vw,120px) 0;border-top:1px solid var(--line-d)}
+.pricing-card{max-width:520px;margin:0 auto;background:linear-gradient(135deg,#1a0a03,#2d1208);border:1px solid rgba(201,146,42,.25);border-radius:8px;padding:52px 44px;text-align:center}
+@media(max-width:560px){.pricing-card{padding:40px 24px}}
+.pricing-eyebrow{font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.pricing-title{font-family:var(--ff-d);font-size:clamp(28px,4vw,44px);font-weight:600;color:var(--cream);margin-bottom:8px;line-height:1.05}
+.pricing-price{font-family:var(--ff-d);font-size:clamp(52px,8vw,80px);font-weight:700;color:var(--gold);line-height:1;margin:24px 0 8px}
+.pricing-price sup{font-size:28px;vertical-align:top;margin-top:14px;margin-right:4px}
+.pricing-note{font-size:13px;color:var(--cream-d);margin-bottom:32px}
+.pricing-features{list-style:none;margin-bottom:36px;text-align:left}
+.pricing-features li{padding:10px 0;border-bottom:1px solid rgba(201,146,42,.12);font-size:14.5px;color:var(--cream-d);display:flex;align-items:center;gap:12px}
+.pricing-features li::before{content:'✓';color:var(--gold);font-weight:700;font-size:15px;flex-shrink:0}
+.pricing-btn{display:block;width:100%;background:var(--accent);color:var(--cream);font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:18px 32px;border-radius:2px;transition:background .2s,transform .2s;margin-bottom:14px}
+.pricing-btn:hover{background:var(--accent-h);transform:translateY(-2px)}
+.pricing-btn-ghost{display:block;width:100%;border:1.5px solid rgba(201,146,42,.35);color:var(--gold);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:14px 32px;border-radius:2px;transition:all .2s}
+.pricing-btn-ghost:hover{border-color:var(--gold);background:rgba(201,146,42,.08)}
+.pricing-disclaimer{font-size:12px;color:var(--cream-d);opacity:.5;margin-top:18px}
+
+/* ===== INQUIRY FORM ===== */
+.inquiry-section{background:var(--light-bg);padding:clamp(72px,9vw,120px) 0}
+.inquiry-inner{max-width:640px;margin:0 auto}
+.form-group{margin-bottom:20px}
+.form-label{display:block;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.form-input,.form-textarea{width:100%;padding:14px 18px;border:1.5px solid var(--line-l);border-radius:4px;font-family:var(--ff-b);font-size:15px;color:var(--dark);background:#fff;outline:none;transition:border .2s}
+.form-input:focus,.form-textarea:focus{border-color:var(--accent)}
+.form-textarea{resize:vertical;min-height:130px}
+.form-submit{display:block;width:100%;background:var(--accent);color:var(--cream);font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:17px 32px;border-radius:2px;transition:background .2s,transform .2s;cursor:pointer;border:none;font-family:var(--ff-b)}
+.form-submit:hover{background:var(--accent-h);transform:translateY(-1px)}
+.form-note{font-size:13px;color:var(--muted);margin-top:14px;text-align:center}
+.form-success{display:none;text-align:center;padding:32px;font-family:var(--ff-d);font-size:22px;color:var(--accent);font-style:italic}
+
+/* ===== FOOTER ===== */
+footer{background:var(--bg);padding:56px 24px;text-align:center;border-top:1px solid var(--line-d)}
+.footer-logo{font-family:var(--ff-d);font-size:28px;font-weight:600;color:var(--gold);margin-bottom:8px}
+.footer-sub{font-size:13px;color:var(--cream-d);margin-bottom:24px}
+.footer-rule{width:50px;height:1px;background:rgba(201,146,42,.35);margin:0 auto 24px}
+.footer-credit{font-size:12px;color:var(--cream-d);opacity:.5}
+.footer-credit a{color:var(--gold);opacity:1}
+
+/* ===== PREVIEW MODAL ===== */
+.modal-overlay{position:fixed;inset:0;z-index:300;background:rgba(8,4,2,.94);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-box{background:#1a0a03;border:1px solid rgba(201,146,42,.2);border-radius:8px;width:100%;max-width:760px;position:relative;transform:scale(.95);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.modal-overlay.open .modal-box{transform:none}
+.modal-close{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);color:var(--cream);font-size:18px;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:10;cursor:pointer}
+.modal-close:hover{background:rgba(255,255,255,.2)}
+.modal-header-text{padding:28px 32px 0;text-align:center}
+.modal-header-text h3{font-family:var(--ff-d);font-size:clamp(20px,3vw,32px);color:var(--cream);margin-bottom:6px}
+.modal-header-text p{font-size:13px;color:var(--cream-d)}
+.gallery{padding:24px 32px 20px}
+.gallery-main{width:100%;aspect-ratio:4/3;border-radius:4px;overflow:hidden;position:relative;margin-bottom:14px}
+.gallery-main img{width:100%;height:100%;object-fit:cover;transition:opacity .3s}
+.gallery-main-label{position:absolute;bottom:0;left:0;right:0;padding:14px 18px;background:linear-gradient(transparent,rgba(8,4,2,.9));font-family:var(--ff-d);font-size:18px;font-weight:600;color:var(--cream)}
+.gallery-thumbs{display:flex;gap:10px}
+.gallery-thumb{flex:1;aspect-ratio:4/3;border-radius:3px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:border-color .2s}
+.gallery-thumb.active{border-color:var(--gold)}
+.gallery-thumb img{width:100%;height:100%;object-fit:cover}
+.modal-footer{padding:0 32px 28px;text-align:center}
+.modal-buy-btn{display:inline-block;background:var(--accent);color:var(--cream);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:15px 40px;border-radius:2px;transition:background .2s}
+.modal-buy-btn:hover{background:var(--accent-h)}
+
+/* ===== REDUCED MOTION ===== */
+@media(prefers-reduced-motion:reduce){
+  .rise{opacity:1;transform:none;animation:none}
+  .js .reveal{opacity:1;transform:none;transition:none}
+  .orb{animation:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.className='js'</script>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <a href="#" class="nav-brand">Flavors of Heritage</a>
+  <a href="#pricing" class="nav-cta">Get the Cookbook</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow rise d1">A Digital Cookbook</p>
+      <h1 class="hero-title rise d2">Flavors of<em>Heritage</em></h1>
+      <p class="hero-sub rise d3">Spanish-Filipino Cuisine</p>
+      <p class="hero-author rise d4">By <strong>Jeannie Rebadulla</strong></p>
+      <div class="hero-actions rise d5">
+        <button class="btn-primary" id="openPreviewBtn">Preview the Book &rarr;</button>
+        <a href="#pricing" class="btn-ghost">Get Instant Access</a>
+      </div>
+    </div>
+    <div class="hero-book rise d4">
+      <img src="assets/page-01.jpg" alt="Flavors of Heritage cookbook cover" class="hero-book-img">
+      <div class="hero-badge">38 Classic Recipes</div>
+    </div>
+  </div>
+</section>
+
+<!-- PREVIEW STRIP -->
+<section class="preview-strip" id="preview">
+  <div class="wrap">
+    <div class="reveal">
+      <h2>A Taste of What&rsquo;s Inside</h2>
+      <p>38 classic Spanish-Filipino recipes — searchable, beautiful, and ready to cook from your phone</p>
+    </div>
+    <div class="preview-grid reveal">
+      <div class="preview-card" onclick="openGallery(0)">
+        <img src="assets/recipe-bistek.jpg" alt="Bistek Tagalog" loading="lazy">
+        <div class="preview-card-label">Bistek Tagalog</div>
+      </div>
+      <div class="preview-card" onclick="openGallery(1)">
+        <img src="assets/recipe-paella-negra.jpg" alt="Paella Negra" loading="lazy">
+        <div class="preview-card-label">Paella Negra</div>
+      </div>
+      <div class="preview-card" onclick="openGallery(2)">
+        <img src="assets/recipe-crema-catalana.jpg" alt="Crema Catalana" loading="lazy">
+        <div class="preview-card-label">Crema Catalana</div>
+      </div>
+      <div class="preview-card" onclick="openGallery(3)">
+        <img src="assets/recipe-garlic-chicken.jpg" alt="Spanish Garlic Chicken" loading="lazy">
+        <div class="preview-card-label">Spanish Garlic Chicken</div>
+      </div>
+      <div class="preview-card" onclick="openGallery(4)">
+        <img src="assets/recipe-pancit-molo.jpg" alt="Pancit Molo" loading="lazy">
+        <div class="preview-card-label">Pancit Molo</div>
+      </div>
+      <div class="preview-card" onclick="openGallery(5)">
+        <img src="assets/recipe-mechado.jpg" alt="Beef Mechado" loading="lazy">
+        <div class="preview-card-label">Beef Mechado</div>
+      </div>
+    </div>
+    <div class="preview-cta reveal">
+      <button class="btn-primary" id="openPreviewBtn2">See Full Preview &rarr;</button>
+      <p>Browse a sample of the cookbook before you buy</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INSIDE -->
+<section class="inside-section">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="section-eyebrow">What&rsquo;s Inside</p>
+      <h2 class="section-title">38 Recipes Across 7 Categories</h2>
+      <p class="section-sub">From hearty stews to delicate desserts — every dish rooted in the Spanish-Filipino tradition.</p>
+    </div>
+    <div class="inside-grid reveal">
+      <div class="inside-card">
+        <img src="assets/page-06.jpg" alt="Kare-Kare" loading="lazy">
+        <div class="inside-card-body">
+          <p class="inside-card-cat" style="color:#8B1A1A">Poultry &amp; Meat</p>
+          <p class="inside-card-name">Ox Tail Kare-Kare</p>
+        </div>
+      </div>
+      <div class="inside-card">
+        <img src="assets/recipe-pastel.jpg" alt="Chicken Pastel" loading="lazy">
+        <div class="inside-card-body">
+          <p class="inside-card-cat" style="color:#8B1A1A">Poultry &amp; Meat</p>
+          <p class="inside-card-name">Chicken Pastel</p>
+        </div>
+      </div>
+      <div class="inside-card">
+        <img src="assets/page-10.jpg" alt="Gambas al Ajillo" loading="lazy">
+        <div class="inside-card-body">
+          <p class="inside-card-cat" style="color:#1A4E8B">Seafood</p>
+          <p class="inside-card-name">Gambas al Ajillo</p>
+        </div>
+      </div>
+      <div class="inside-card">
+        <img src="assets/page-29.jpg" alt="Chicken Paella" loading="lazy">
+        <div class="inside-card-body">
+          <p class="inside-card-cat" style="color:#7A5A1A">Rice &amp; Paella</p>
+          <p class="inside-card-name">Chicken Paella</p>
+        </div>
+      </div>
+      <div class="inside-card">
+        <img src="assets/page-14.jpg" alt="Churros con Chocolate" loading="lazy">
+        <div class="inside-card-body">
+          <p class="inside-card-cat" style="color:#5A3A1A">Baked Goods</p>
+          <p class="inside-card-name">Churros con Chocolate</p>
+        </div>
+      </div>
+      <div class="inside-card">
+        <img src="assets/page-30.jpg" alt="Leche Flan" loading="lazy">
+        <div class="inside-card-body">
+          <p class="inside-card-cat" style="color:#8B1A5A">Desserts</p>
+          <p class="inside-card-name">Leche Flan</p>
+        </div>
+      </div>
+    </div>
+    <p class="inside-more reveal">&hellip; and 32 more recipes waiting for you.</p>
+  </div>
+</section>
+
+<!-- AUTHOR -->
+<section class="author-section">
+  <div class="wrap">
+    <div class="author-inner reveal">
+      <div>
+        <div class="author-portrait">
+          <span class="author-monogram">JR</span>
+        </div>
+      </div>
+      <div>
+        <p class="author-eyebrow">About the Author</p>
+        <h2 class="author-name">Jeannie Rebadulla</h2>
+        <div class="author-tags">
+          <span class="author-tag">Pastor</span>
+          <span class="author-tag">Woman of God</span>
+          <span class="author-tag">Visionary</span>
+          <span class="author-tag">Amazing Cook</span>
+        </div>
+        <p class="author-bio">Jeannie Rebadulla is a woman of faith, a dedicated pastor, and a visionary whose love for bringing people together through food has inspired generations. Her recipes celebrate the rich culinary heritage of the Philippines &mdash; where Spanish tradition and Filipino warmth meet beautifully at the table.</p>
+        <p class="author-quote">&ldquo;Cook with love, serve with joy, and gather often.&rdquo;</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="section-eyebrow" style="color:var(--gold)">Get Instant Access</p>
+      <h2 class="section-title" style="color:var(--cream);margin-bottom:48px">One Book. A Lifetime of Recipes.</h2>
+    </div>
+    <div class="pricing-card reveal">
+      <p class="pricing-eyebrow">Digital Cookbook</p>
+      <h3 class="pricing-title">Flavors of Heritage</h3>
+      <div class="pricing-price"><sup>₱</sup>199</div>
+      <p class="pricing-note">One-time payment &middot; Instant access</p>
+      <ul class="pricing-features">
+        <li>38 complete Spanish-Filipino recipes</li>
+        <li>Searchable &amp; filterable digital cookbook</li>
+        <li>Works on any phone, tablet, or computer</li>
+        <li>Ingredients, instructions &amp; Cook&rsquo;s Tips</li>
+        <li>Lifetime access — yours to keep</li>
+      </ul>
+      <!-- Replace the href below with your PayMongo payment link -->
+      <a href="#" class="pricing-btn" id="payBtn">Pay via GCash / Maya / Card &rarr;</a>
+      <a href="#inquiry" class="pricing-btn-ghost">Have a question? Send us a message</a>
+      <p class="pricing-disclaimer">Powered by PayMongo &middot; Secure payment &middot; GCash, Maya, Debit/Credit Card accepted</p>
+    </div>
+  </div>
+</section>
+
+<!-- INQUIRY FORM -->
+<section class="inquiry-section" id="inquiry">
+  <div class="wrap">
+    <div class="inquiry-inner">
+      <div class="reveal" style="text-align:center;margin-bottom:44px">
+        <p class="section-eyebrow">Get in Touch</p>
+        <h2 class="section-title">Have a Question?</h2>
+        <p class="section-sub" style="margin-bottom:0">Send us a message and we&rsquo;ll get back to you within 24 hours.</p>
+      </div>
+      <!--
+        TO ACTIVATE: Sign up free at formspree.io, create a form,
+        and replace YOUR_FORM_ID below with your form ID.
+        Example: action="https://formspree.io/f/xpzvwqab"
+      -->
+      <form id="inquiryForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="reveal">
+        <div class="form-group">
+          <label class="form-label" for="fname">Your Name</label>
+          <input type="text" id="fname" name="name" class="form-input" placeholder="e.g. Maria Santos" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="femail">Email Address</label>
+          <input type="email" id="femail" name="email" class="form-input" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="fmsg">Your Message</label>
+          <textarea id="fmsg" name="message" class="form-textarea" placeholder="Ask about the cookbook, payment options, bulk orders, or anything else..." required></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message &rarr;</button>
+        <p class="form-note">We reply via email within 24 hours &middot; <a href="mailto:lessizmore.ph@gmail.com" style="color:var(--accent)">lessizmore.ph@gmail.com</a></p>
+      </form>
+      <div class="form-success" id="formSuccess">
+        &ldquo;Thank you! We&rsquo;ll be in touch soon.&rdquo;
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-logo">Flavors of Heritage</p>
+  <p class="footer-sub">Spanish-Filipino Cuisine &mdash; by Jeannie Rebadulla</p>
+  <div class="footer-rule"></div>
+  <p class="footer-credit">Designed &amp; built by <a href="#">Less Is More Personalized Designs</a> &middot; Philippines &middot; 2026</p>
+</footer>
+
+<!-- PREVIEW MODAL -->
+<div class="modal-overlay" id="previewModal">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose">&times;</button>
+    <div class="modal-header-text">
+      <h3>A Peek Inside the Cookbook</h3>
+      <p>Click any thumbnail to browse</p>
+    </div>
+    <div class="gallery">
+      <div class="gallery-main">
+        <img id="galleryMain" src="assets/recipe-bistek.jpg" alt="">
+        <div class="gallery-main-label" id="galleryLabel">Bistek Tagalog</div>
+      </div>
+      <div class="gallery-thumbs" id="galleryThumbs"></div>
+    </div>
+    <div class="modal-footer">
+      <a href="#pricing" class="modal-buy-btn" id="modalBuyBtn">Get the Full Cookbook &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== GALLERY DATA =====
+const GALLERY = [
+  { src:'assets/recipe-bistek.jpg',         label:'Bistek Tagalog' },
+  { src:'assets/recipe-paella-negra.jpg',   label:'Paella Negra' },
+  { src:'assets/recipe-crema-catalana.jpg', label:'Crema Catalana' },
+  { src:'assets/recipe-garlic-chicken.jpg', label:'Spanish Garlic Chicken' },
+  { src:'assets/recipe-pancit-molo.jpg',    label:'Pancit Molo' },
+  { src:'assets/recipe-mechado.jpg',        label:'Beef Mechado' },
+];
+
+let activeIdx = 0;
+
+function buildThumbs() {
+  const c = document.getElementById('galleryThumbs');
+  c.innerHTML = '';
+  GALLERY.forEach((g, i) => {
+    const d = document.createElement('div');
+    d.className = 'gallery-thumb' + (i === activeIdx ? ' active' : '');
+    d.innerHTML = `<img src="${g.src}" alt="${g.label}" loading="lazy">`;
+    d.addEventListener('click', () => setGallery(i));
+    c.appendChild(d);
+  });
+}
+
+function setGallery(idx) {
+  activeIdx = idx;
+  const main = document.getElementById('galleryMain');
+  main.style.opacity = '0';
+  setTimeout(() => {
+    main.src = GALLERY[idx].src;
+    main.alt = GALLERY[idx].label;
+    document.getElementById('galleryLabel').textContent = GALLERY[idx].label;
+    main.style.opacity = '1';
+  }, 150);
+  document.querySelectorAll('.gallery-thumb').forEach((t, i) => {
+    t.classList.toggle('active', i === idx);
+  });
+}
+
+function openGallery(idx) {
+  activeIdx = idx;
+  buildThumbs();
+  setGallery(idx);
+  document.getElementById('previewModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('previewModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('openPreviewBtn').addEventListener('click', () => openGallery(0));
+document.getElementById('openPreviewBtn2').addEventListener('click', () => openGallery(0));
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('previewModal').addEventListener('click', e => {
+  if (e.target === document.getElementById('previewModal')) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+document.getElementById('modalBuyBtn').addEventListener('click', () => {
+  closeModal();
+  document.getElementById('pricing').scrollIntoView({ behavior:'smooth' });
+});
+
+buildThumbs();
+
+// ===== NAV SCROLL =====
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
+}, { passive:true });
+
+// ===== FORM HANDLER =====
+document.getElementById('inquiryForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('.form-submit');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+  try {
+    const res = await fetch(this.action, {
+      method:'POST',
+      body: new FormData(this),
+      headers:{ 'Accept':'application/json' }
+    });
+    if (res.ok) {
+      this.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    } else {
+      btn.textContent = 'Send Message →';
+      btn.disabled = false;
+      alert('Something went wrong. Please email us directly at lessizmore.ph@gmail.com');
+    }
+  } catch {
+    btn.textContent = 'Send Message →';
+    btn.disabled = false;
+    alert('Could not send. Please email us directly at lessizmore.ph@gmail.com');
+  }
+});
+
+// ===== SCROLL REVEAL =====
+(function(){
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const items = document.querySelectorAll('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) { items.forEach(el => el.classList.add('in')); return; }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold:0.1, rootMargin:'0px 0px -40px 0px' });
+  items.forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>
